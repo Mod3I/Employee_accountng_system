@@ -31,4 +31,10 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Date\" />
+    <Folder Include="Windows\" />
+    <Folder Include="Pages\" />
+  </ItemGroup>
+
 </Project>
