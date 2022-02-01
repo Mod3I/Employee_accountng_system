@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TEST"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" WindowStyle="None" Background="White" ShowInTaskbar="False" ResizeMode="NoResize">
     <Grid>
+        <Grid Height="30" VerticalAlignment="Top">
+            <Label Content="VOLGA"></Label>
+        </Grid>
         <Grid Width="400" HorizontalAlignment="Left">
             <Image Source="Resources/F2.jpg"></Image>
         </Grid>
