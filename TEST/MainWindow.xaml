@@ -3,15 +3,38 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fa5="http://schemas.fontawesome.com/icons/"
         xmlns:local="clr-namespace:TEST"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" WindowStyle="None" Background="White" ShowInTaskbar="False" ResizeMode="NoResize">
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="MainWindow" Height="450" Width="800" WindowStyle="None" ShowInTaskbar="False" ResizeMode="NoResize">
     <Grid>
-        <Grid Height="30" VerticalAlignment="Top">
-            <Label Content="VOLGA"></Label>
-        </Grid>
-        <Grid Width="400" HorizontalAlignment="Left">
-            <Image Source="Resources/F2.jpg"></Image>
-        </Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400*"/>
+            <ColumnDefinition Width="400*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel VerticalAlignment="Top" Height="42"
+                    Grid.Column="0">
+            <Label Margin="12,18" Padding="0" Width="375.5">VOLGA</Label>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Top" Height="42" Orientation="Vertical"
+                    Grid.Column="1">
+            <Button Height="24" Width="24" HorizontalAlignment="Right" Margin="10"
+                    Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}">
+                <materialDesign:ButtonAssist.CornerRadius>0</materialDesign:ButtonAssist.CornerRadius>
+                <materialDesign:PackIcon Kind="Power" HorizontalAlignment="Center" VerticalAlignment="Center"></materialDesign:PackIcon>
+
+            </Button>
+            <Image Height="24" Width="24" Source="Resources/close-button.png"/>
+            <Button Height="30" Width="30"></Button>
+        </StackPanel>
+        <Image Height="24" Source="Resources/close-button.png"/>
     </Grid>
 </Window>
