@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TEST1", "TEST1\TEST1.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VOLGA_EAS", "VOLGA_EAS\VOLGA_EAS.csproj", "{A8B6D092-D862-4159-8C2A-759418E0F141}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Only_Test", "Only_Test\Only_Test.csproj", "{822C7D93-5CFE-46E6-9E76-6D2D0C8E6A8D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{A8B6D092-D862-4159-8C2A-759418E0F141}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8B6D092-D862-4159-8C2A-759418E0F141}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8B6D092-D862-4159-8C2A-759418E0F141}.Release|Any CPU.Build.0 = Release|Any CPU
+		{822C7D93-5CFE-46E6-9E76-6D2D0C8E6A8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{822C7D93-5CFE-46E6-9E76-6D2D0C8E6A8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{822C7D93-5CFE-46E6-9E76-6D2D0C8E6A8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{822C7D93-5CFE-46E6-9E76-6D2D0C8E6A8D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

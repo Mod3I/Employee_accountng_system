@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VOLGA_EAS"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" ResizeMode="NoResize" WindowStyle="None">
+        Title="MainWindow" Height="450" Width="800" 
+        ResizeMode="NoResize" WindowStyle="None"
+        FontFamily="Arial">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="400*"/>
@@ -27,7 +29,15 @@
             </Button>
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center"
                         Margin="0,100,0,0">
+                <Label HorizontalAlignment="Center"
+                       Margin="20">Авторизация</Label>
+                <TextBox Height="26" Width="150" Margin="0,20"/>
                 <TextBox Height="26" Width="150"/>
+                <Grid Margin="0,25,0,0">
+                    <Polygon Points="150,0,150,30,0,30,0,0" Fill="#FF006837" Height="30" Width="150"
+                             VerticalAlignment="Bottom" HorizontalAlignment="Center" ></Polygon>
+                    <Label HorizontalAlignment="Center" VerticalAlignment="Center">Авторизоваться</Label>
+                </Grid>
             </StackPanel>
         </StackPanel>
     </Grid>
