@@ -1,4 +1,32 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
+    <!--Стандартные для приложения белые лейблы-->
+    
+    <Style TargetType="Label">
+        <Setter Property="Foreground" Value="White"></Setter>
+    </Style>
+    
+    <Style TargetType="Label" x:Key="WindowTitle" BasedOn="{StaticResource {x:Type Label}}">
+        <Setter Property="FontSize" Value="12"></Setter>
+    </Style>
+    
+    <!--Серые лейблы-->
+    
+    <Style TargetType="Label" x:Key="GrayLabel">
+        <Setter Property="Foreground" Value="#FF4D4D4D"/>
+    </Style>
+    
+    <Style TargetType="Label" x:Key="BigGrayLabel" BasedOn="{StaticResource GrayLabel}">
+        <Setter Property="FontSize" Value="24"/>
+    </Style>
+    
+    <Style TargetType="Label" x:Key="NormalGrayLabel" BasedOn="{StaticResource GrayLabel}">
+        <Setter Property="FontSize" Value="16"/>
+    </Style>
+    
+    <Style TargetType="Label" x:Key="SmallGrayLabel" BasedOn="{StaticResource GrayLabel}">
+        <Setter Property="FontSize" Value="12"/>
+    </Style>
+    
 </ResourceDictionary>
