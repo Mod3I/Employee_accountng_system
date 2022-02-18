@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace VOLGA_EAS
+namespace VOLGA_EAS.Data
 {
     using System;
     using System.Data.Entity;

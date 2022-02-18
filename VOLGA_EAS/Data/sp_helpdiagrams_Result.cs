@@ -7,23 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace VOLGA_EAS
+namespace VOLGA_EAS.Data
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class POSITIONS
+    public partial class sp_helpdiagrams_Result
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public POSITIONS()
-        {
-            this.EMPLOYEES = new HashSet<EMPLOYEES>();
-        }
-    
-        public int POSITION_ID { get; set; }
-        public string POSITION_NAME { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EMPLOYEES> EMPLOYEES { get; set; }
+        public string Database { get; set; }
+        public string Name { get; set; }
+        public int ID { get; set; }
+        public string Owner { get; set; }
+        public int OwnerID { get; set; }
     }
 }

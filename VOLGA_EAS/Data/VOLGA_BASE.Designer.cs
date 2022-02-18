@@ -1,4 +1,4 @@
-﻿// Создание кода T4 для модели "C:\Users\lapik\Source\Repos\Mod3I\Employee_accountng_system\VOLGA_EAS\VOLGA_BASE.edmx" включено. 
+﻿// Создание кода T4 для модели "D:\source\repos\Mod3I\Employee_accountng_system\VOLGA_EAS\Data\VOLGA_BASE.edmx" включено. 
 // Чтобы включить формирование кода прежних версий, измените значение свойства "Стратегия создания кода" конструктора
 // на "Legacy ObjectContext". Это свойство доступно в окне "Свойства", если модель
 // открыта в конструкторе.

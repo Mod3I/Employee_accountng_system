@@ -7,13 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace VOLGA_EAS
+namespace VOLGA_EAS.Data
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class sp_helpdiagramdefinition_Result
+    public partial class PROJECTS
     {
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public int PROJECT_ID { get; set; }
+        public string PROJECT_NAME { get; set; }
+        public string PROJECT_DISCRIPTION { get; set; }
     }
 }
