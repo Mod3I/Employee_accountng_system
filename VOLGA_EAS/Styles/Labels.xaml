@@ -6,6 +6,7 @@
     <Style TargetType="Label">
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="FontFamily" Value="Arial Black"/>
+        <Setter Property="Padding" Value="0,1"/>
     </Style>
     
     <Style TargetType="Label" x:Key="SmallWhiteLabel" BasedOn="{StaticResource {x:Type Label}}">
@@ -14,22 +15,96 @@
     
     <!--Лейблы с серым текстом-->
     
-    <Style TargetType="Label" x:Key="GrayLabel">
+    <!--Arial Black-->
+    
+    <Style TargetType="Label" x:Key="GrayLabelBlack">
         <Setter Property="Foreground" Value="#FF4D4D4D"/>
         <Setter Property="FontFamily" Value="Arial Black"/>
-        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Padding" Value="0,1"/>
     </Style>
     
-    <Style TargetType="Label" x:Key="BigGrayLabel" BasedOn="{StaticResource GrayLabel}">
+    <Style TargetType="Label" x:Key="BigGrayLabelBlack" BasedOn="{StaticResource GrayLabelBlack}">
         <Setter Property="FontSize" Value="24"/>
     </Style>
     
-    <Style TargetType="Label" x:Key="NormalGrayLabel" BasedOn="{StaticResource GrayLabel}">
+    <Style TargetType="Label" x:Key="NormalGrayLabelBlack" BasedOn="{StaticResource GrayLabelBlack}">
         <Setter Property="FontSize" Value="16"/>
     </Style>
-    
-    <Style TargetType="Label" x:Key="SmallGrayLabel" BasedOn="{StaticResource GrayLabel}">
-        <Setter Property="FontSize" Value="12"/>
+
+    <Style TargetType="Label" x:Key="SmallGrayLabelBlack" BasedOn="{StaticResource GrayLabelBlack}">
+        <Setter Property="FontSize" Value="14"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="TinyGrayLabelBlack" BasedOn="{StaticResource GrayLabelBlack}">
+        <Setter Property="FontSize" Value="10"/>
     </Style>
     
+    <!--Arial-->
+
+    <Style TargetType="Label" x:Key="GrayLabel">
+        <Setter Property="Foreground" Value="#FF4D4D4D"/>
+        <Setter Property="FontFamily" Value="Arial"/>
+        <Setter Property="Padding" Value="0,1"/>
+    </Style>
+
+    <!--Лейблы(ссылки)-->
+
+    <Style TargetType="Label" x:Key="TinyGrayLabelBlackLink" BasedOn="{StaticResource TinyGrayLabelBlack}">
+        <Setter Property="Cursor" Value="Hand"/>
+    </Style>
+
+    <!--Лейблы(кнопки) закрытия, сворачивания и разворачивания-->
+
+    <Style TargetType="Label" x:Key="LabelButtons">
+        <Setter Property="Foreground" Value="#FF4D4D4D"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Margin" Value="5"/>
+
+        <!--Анимация для лейблов(кнопок)-->
+        
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Trigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"
+                                            To="#FF8B8B8B"
+                                            Duration="0:0:0.2"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"
+                                            To="Transparent"
+                                            Duration="0:0:0.2"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.ExitActions>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="Label" x:Key="CloseButton" BasedOn="{StaticResource LabelButtons}">
+        <Setter Property="Content" Value="🗙︎"/>
+        <Setter Property="ToolTip" Value="Закрыть"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="MaximizeButton" BasedOn="{StaticResource LabelButtons}">
+        <Setter Property="Content" Value="🗖"/>
+        <Setter Property="ToolTip" Value="Развернуть"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="BackSizeButton" BasedOn="{StaticResource LabelButtons}">
+        <Setter Property="Content" Value="🗗"/>
+        <Setter Property="ToolTip" Value="Восстановить"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="MinimizeButton" BasedOn="{StaticResource LabelButtons}">
+        <Setter Property="Content" Value="🗕"/>
+        <Setter Property="ToolTip" Value="Свернуть"/>
+    </Style>
+
 </ResourceDictionary>

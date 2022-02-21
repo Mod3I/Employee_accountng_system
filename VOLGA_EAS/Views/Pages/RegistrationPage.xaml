@@ -12,56 +12,76 @@
         <Grid>
             <Image Source="/Resources/F.jpg" 
                    Stretch="UniformToFill"/>
-            
-            <StackPanel VerticalAlignment="Center"
-                        HorizontalAlignment="Center"
-                        Background="White"
-                        Orientation="Vertical"
-                        Height="350"
-                        Width="320">
-                
-                <Label Content="Регистрация"
-                       Style="{StaticResource NormalGrayLabel}"
-                       Margin="30,10"/>
 
-                <Label Content="E-mail"
-                       Style="{StaticResource GrayLabel}"
-                       Margin="30,5"/>
+            <StackPanel VerticalAlignment="Top"
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal">
 
-                <TextBox Height="28"
-                         Margin="30,0,30,12"></TextBox>
+                <Label Style="{StaticResource MinimizeButton}"
+                       Foreground="#FF2B2A2A"/>
 
-                <Label Content="Никнейм"
-                       Style="{StaticResource GrayLabel}"
-                       Margin="30,5"/>
-
-                <TextBox Height="28"
-                         Margin="30,0,30,12"></TextBox>
-
-                <Label Content="Пароль"
-                       Style="{StaticResource GrayLabel}"
-                       Margin="30,5"/>
-
-                <TextBox Height="28"
-                         Margin="30,0,30,12"></TextBox>
-
-                <Label Content="Подтвердите пароль"
-                       Style="{StaticResource GrayLabel}"
-                       Margin="30,5"/>
-
-                <TextBox Height="28"
-                         Margin="30,0"></TextBox>
-
-                <Grid Margin="30,20">
-                    <Rectangle Fill="#FF006837"
-                               Height="30"/>
-                    
-                    <Label HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           Style="{StaticResource SmallWhiteLabel}"
-                           Content="ПРОДОЛЖИТЬ"/>
-                </Grid>
+                <Label Style="{StaticResource CloseButton}"
+                       Foreground="#FF2B2A2A"/>
             </StackPanel>
+
+            <Grid Height="350"
+                  Width="320">
+
+                <StackPanel VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            Background="White"
+                            Orientation="Vertical"
+                            Height="350"
+                            Width="320">
+
+                    <Label Content="Регистрация"
+                           Style="{StaticResource NormalGrayLabelBlack}"
+                           Margin="30,10"/>
+
+                    <Label Content="E-mail"
+                           Style="{StaticResource GrayLabelBlack}"
+                           Margin="30,5"/>
+
+                    <TextBox Height="28"
+                         Margin="30,0,30,12"></TextBox>
+
+                    <Label Content="Никнейм"
+                           Style="{StaticResource GrayLabelBlack}"
+                           Margin="30,5"/>
+
+                    <TextBox Height="28"
+                             Margin="30,0,30,12"></TextBox>
+
+                    <Label Content="Пароль"
+                           Style="{StaticResource GrayLabelBlack}"
+                           Margin="30,5"/>
+
+                    <TextBox Height="28"
+                             Margin="30,0,30,12"></TextBox>
+
+                    <Label Content="Подтвердите пароль"
+                           Style="{StaticResource GrayLabelBlack}"
+                           Margin="30,5"/>
+
+                    <TextBox Height="28"
+                             Margin="30,0"></TextBox>
+
+                    <Grid Margin="30,20">
+                        <Rectangle Style="{StaticResource GreenButton}"
+                                   Height="30"/>
+
+                        <Label HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource SmallWhiteLabel}"
+                               Content="ПРОДОЛЖИТЬ"/>
+                        
+                    </Grid>
+                </StackPanel>
+                <Label VerticalAlignment="Top"
+                       HorizontalAlignment="Right"
+                       Style="{StaticResource CloseButton}"/>
+                
+            </Grid>
         </Grid>
     </Grid>
 </Page>

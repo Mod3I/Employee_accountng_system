@@ -15,6 +15,7 @@
         <vm:MainWindowViewModel/>
     </Window.DataContext>
     <Grid>
+        <!--<Frame NavigationUIVisibility="Hidden"/>-->
         <StackPanel VerticalAlignment="Top"
                     Orientation="Horizontal"
                     Height="28">
@@ -26,7 +27,6 @@
                 <ColumnDefinition Width="400*"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
-                
                 <Image Source="/Resources/F.jpg"
                    Height="450"
                    Stretch="UniformToFill"/>
@@ -55,36 +55,41 @@
             <StackPanel Grid.Column="1"
                     VerticalAlignment="Stretch">
 
-                <Image Source="/Resources/close-button.png"
-                   Height="12"
-                   Width="12"
-                   Margin="8"
-                   HorizontalAlignment="Right"
-                   ToolTip="Закрыть"/>
+                <StackPanel HorizontalAlignment="Right"
+                            Orientation="Horizontal">
+                    <Label Style="{StaticResource MinimizeButton}"
+                           Margin="0,5,0,0"/>
+                    
+                    <Label Style="{StaticResource CloseButton}"
+                           Margin="0,5,5,0"/>
+                </StackPanel>
 
                 <StackPanel VerticalAlignment="Center"
                         HorizontalAlignment="Center"
                         Margin="0,62,0,0">
                     <Label HorizontalAlignment="Center"
-                       Style="{StaticResource BigGrayLabel}"
+                       Style="{StaticResource BigGrayLabelBlack}"
                        Margin="20"
                        Content="Авторизация"/>
 
+                    <Label Content="Логин"
+                           Style="{StaticResource SmallGrayLabelBlack}"/>
+
                     <TextBox Height="36"
                          Width="225"
-                         Margin="0,20"/>
+                             materialdesign:HintAssist.Hint="логин"/>
 
+                    <Label Content="Пароль"
+                           Style="{StaticResource SmallGrayLabelBlack}"/>
+                    
                     <TextBox Height="36"
                          Width="225"/>
 
-                    <Grid Margin="0,20,0,0">
+                    <Grid Cursor="Hand"
+                          Margin="0,20,0,0">
+                        <Rectangle Style="{StaticResource GreenButton}"
+                                   Height="36"/>
 
-                        <Polygon Points="225,0,225,36,0,36,0,0"
-                             Fill="#FF006837"
-                             Height="36"
-                             Width="225"
-                             VerticalAlignment="Bottom"
-                             HorizontalAlignment="Center"></Polygon>
                         <Label HorizontalAlignment="Center"
                            VerticalAlignment="Center"
                            Content="ВОЙТИ"
@@ -93,14 +98,12 @@
                     <Grid>
 
                         <Label Content="Забыли пароль?" 
-                           Padding="0,1"
                            HorizontalAlignment="Left"
-                           Style="{StaticResource SmallGrayLabel}"/>
+                           Style="{StaticResource TinyGrayLabelBlackLink}"/>
 
                         <Label Content="Ещё не с нами?"
-                           Padding="0,1"
                            HorizontalAlignment="Right"
-                           Style="{StaticResource SmallGrayLabel}"/>
+                           Style="{StaticResource TinyGrayLabelBlackLink}"/>
                     </Grid>
                 </StackPanel>
             </StackPanel>
