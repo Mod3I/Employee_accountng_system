@@ -75,6 +75,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\Base\Command.cs" />
+    <Compile Include="Commands\LambdaCommand.cs" />
     <Compile Include="Data\EMPLOYEES.cs">
       <DependentUpon>VOLGA_BASE.tt</DependentUpon>
     </Compile>
