@@ -23,6 +23,26 @@ namespace VOLGA_EAS_SIMPLE.Pages
         public MainPage()
         {
             InitializeComponent();
+            DGridProjects.ItemsSource = VOLGA_EAS_DBEntities.GetContext().PROJECTS.ToList();
+        }
+
+        private void Add_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new AddPage());
+        }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (Visibility == Visibility.Visible)
+            {
+                VOLGA_EAS_DBEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
+                DGridProjects.ItemsSource = VOLGA_EAS_DBEntities.GetContext().PROJECTS.ToList();
+            }
         }
     }
 }

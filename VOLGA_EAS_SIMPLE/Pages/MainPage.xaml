@@ -6,12 +6,54 @@
       xmlns:local="clr-namespace:VOLGA_EAS_SIMPLE.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="MainPage">
+      Title="MainPage"
+      IsVisibleChanged="Page_IsVisibleChanged">
 
     <Grid>
         <Grid>
             <Image Source="/Resources/photage 2.png"
                    Stretch="UniformToFill"/>
+            <StackPanel Orientation="Vertical"
+                        Margin="125,55">
+                <DataGrid x:Name="DGridProjects"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Название" Binding="{Binding PROJECT_NAME}" Width="*"/>
+                        <DataGridTextColumn Header="Описание" Binding="{Binding PROJECT_DISCRIPTION}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Grid>
+                    <Button x:Name="AddProject"
+                        HorizontalAlignment="Left"
+                        Click="Add_Click"
+                        Margin="0,5"
+                        Height="36"
+                        Width="100"
+                        Background="#FF006837"
+                        BorderBrush="{x:Null}"
+                        Foreground="{x:Null}">
+                        <Label HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource SmallWhiteLabel}"
+                               Content="ДОБАВИТЬ"/>
+                    </Button>
+                    <Button x:Name="DeleteProject"
+                        HorizontalAlignment="Right"
+                        Click="Delete_Click"
+                        Margin="0,5"
+                        Height="36"
+                        Width="100"
+                        Background="#FF006837"
+                        BorderBrush="{x:Null}"
+                        Foreground="{x:Null}">
+                        <Label HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource SmallWhiteLabel}"
+                               Content="УДАЛИТЬ"/>
+                    </Button>
+                </Grid>
+            </StackPanel>
         </Grid>
     </Grid>
 </Page>
