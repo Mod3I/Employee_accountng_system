@@ -29,5 +29,10 @@ namespace VOLGA_EAS_SIMPLE.Pages
         {
             Manager.MainFrame.Navigate(new MainPage());
         }
+
+        private void Registration_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new RegistrationPage());
+        }
     }
 }

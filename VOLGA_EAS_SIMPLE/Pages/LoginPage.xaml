@@ -36,15 +36,15 @@
                        Margin="0,20"
                        Content="Ещё не зарегистрированны?"/>
 
-                    <Label VerticalAlignment="Center"
-                       HorizontalAlignment="Center" 
-                       Content="Зарегистрироваться"
+                    <Button Background="{x:Null}"
+                            BorderBrush="{x:Null}" 
+                            Foreground="{x:Null}"
+                            Click="Registration_Click">
+                        <Label Content="Зарегистрироваться"
                        BorderThickness="0,0,0,1"
                        BorderBrush="White"
-                       Padding="0,5,0,0" 
-                       Cursor="Hand">
-
-                    </Label>
+                       Padding="0,5,0,0"/>
+                    </Button>
                     <Grid>
 
                     </Grid>
