@@ -1,9 +1,13 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using VOLGA_EAS.Views.Windows.MainWindowViews;
 
 namespace VOLGA_EAS.ViewModels.Base
 {
-    internal abstract class ViewModel : INotifyPropertyChanged
+    public abstract class ViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -19,5 +23,37 @@ namespace VOLGA_EAS.ViewModels.Base
             OnPropertyChanged(PropertyName);
             return true;
         }
+
+        //private LoginView _LoginView = new LoginView();
+
+        //private RegistrationView _RegistrationView = new RegistrationView();
+
+        //private INotifyPropertyChanged _CurrentViewModel;
+        //public INotifyPropertyChanged CurrentViewModel
+        //{
+        //    get { return _CurrentViewModel; }
+        //    set
+        //    {
+        //        _CurrentViewModel = value;
+        //        OnPropertyChanged(() => CurrentViewModel);
+        //    }
+        //}
+
+        //private void OnPropertyChanged(Func<INotifyPropertyChanged> p)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public IEnumerable<INotifyPropertyChanged> ViewModelsToSwitch
+        //{
+        //    get
+        //    {
+        //        return new INotifyPropertyChanged[]
+        //                   {
+        //                           _LoginView,
+        //                           _RegistrationView
+        //                   };
+        //    }
+        //}
     }
 }

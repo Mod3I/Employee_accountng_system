@@ -7,14 +7,6 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" WindowStyle="None" ResizeMode="NoResize">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="400*"/>
-            <ColumnDefinition Width="400*"/>
-        </Grid.ColumnDefinitions>
-        <StackPanel VerticalAlignment="Top" Height="42" Grid.ColumnSpan="2">
-            <Label HorizontalAlignment="Left" Margin="12, 14">VOLGA</Label>
-
-        </StackPanel>
-        <Image></Image>
+        
     </Grid>
 </Window>

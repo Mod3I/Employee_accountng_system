@@ -5,108 +5,30 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:VOLGA_EAS.ViewModels"
-        xmlns:local="clr-namespace:VOLGA_EAS"
+        xmlns:v="clr-namespace:VOLGA_EAS.Views.Windows.MainWindowViews"
+        xmlns:cmd="clr-namespace:VOLGA_EAS.Commands"
+        xmlns:local="clr-namespace:VOLGA_EAS" xmlns:base="clr-namespace:VOLGA_EAS.ViewModels.Base" d:DataContext="{d:DesignInstance Type=vm:MainWindowViewModel}"
         mc:Ignorable="d"
         Title="{Binding Title}"
         Height="450"
         Width="800"
         Style="{StaticResource WindowStyle}">
-    <Window.DataContext>
+    <!--<Window.DataContext>
         <vm:MainWindowViewModel/>
-    </Window.DataContext>
+    </Window.DataContext>-->
     <Grid>
-        <!--<Frame NavigationUIVisibility="Hidden"/>-->
-        <StackPanel VerticalAlignment="Top"
-                    Orientation="Horizontal"
-                    Height="28">
+        <ContentControl Content="{Binding CurrentViewModel}">
+            <ContentControl.Resources>
+                <DataTemplate DataType="{x:Type vm:LoginViewModel}">
+                    <v:LoginView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type vm:RegistrationViewModel}">
+                    <v:RegistrationView/>
+                </DataTemplate>
+            </ContentControl.Resources>
+        </ContentControl>
+        <Button Height="50" Command="{Binding NavigationCommand}">
             
-        </StackPanel>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="400*"/>
-                <ColumnDefinition Width="400*"/>
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
-                <Image Source="/Resources/F.jpg"
-                   Height="450"
-                   Stretch="UniformToFill"/>
-
-                <Label Content="{Binding Title}"
-                   Padding="10,15"
-                   Style="{StaticResource SmallWhiteLabel}"/>
-
-                <StackPanel VerticalAlignment="Center"
-                        HorizontalAlignment="Center">
-
-                    <Label VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       Margin="0,20"
-                       Content="Ещё не зарегистрированны?"/>
-
-                    <Label VerticalAlignment="Center"
-                       HorizontalAlignment="Center" 
-                       Content="Зарегистрироваться"
-                       BorderThickness="0,0,0,1"
-                       BorderBrush="White"
-                       Padding="0,5,0,0" 
-                       Cursor="Hand"/>
-                </StackPanel>
-            </Grid>
-            <StackPanel Grid.Column="1"
-                    VerticalAlignment="Stretch">
-
-                <StackPanel HorizontalAlignment="Right"
-                            Orientation="Horizontal">
-                    <Label Style="{StaticResource MinimizeButton}"
-                           Margin="0,5,0,0"/>
-                    
-                    <Label Style="{StaticResource CloseButton}"
-                           Margin="0,5,5,0"/>
-                </StackPanel>
-
-                <StackPanel VerticalAlignment="Center"
-                        HorizontalAlignment="Center"
-                        Margin="0,62,0,0">
-                    <Label HorizontalAlignment="Center"
-                       Style="{StaticResource BigGrayLabelBlack}"
-                       Margin="20"
-                       Content="Авторизация"/>
-
-                    <Label Content="Логин"
-                           Style="{StaticResource SmallGrayLabelBlack}"/>
-
-                    <TextBox Height="36"
-                         Width="225"
-                             materialdesign:HintAssist.Hint="логин"/>
-
-                    <Label Content="Пароль"
-                           Style="{StaticResource SmallGrayLabelBlack}"/>
-                    
-                    <TextBox Height="36"
-                         Width="225"/>
-
-                    <Grid Cursor="Hand"
-                          Margin="0,20,0,0">
-                        <Rectangle Style="{StaticResource GreenButton}"
-                                   Height="36"/>
-
-                        <Label HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           Content="ВОЙТИ"
-                           Style="{StaticResource SmallWhiteLabel}"/>
-                    </Grid>
-                    <Grid>
-
-                        <Label Content="Забыли пароль?" 
-                           HorizontalAlignment="Left"
-                           Style="{StaticResource TinyGrayLabelBlackLink}"/>
-
-                        <Label Content="Ещё не с нами?"
-                           HorizontalAlignment="Right"
-                           Style="{StaticResource TinyGrayLabelBlackLink}"/>
-                    </Grid>
-                </StackPanel>
-            </StackPanel>
-        </Grid>
+        </Button>
     </Grid>
 </Window>

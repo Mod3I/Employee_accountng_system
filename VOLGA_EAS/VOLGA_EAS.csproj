@@ -74,13 +74,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\ApplicationCloseCommand.cs" />
+    <Compile Include="Commands\ApplicationMinimizeCommand.cs" />
     <Compile Include="Commands\Base\Command.cs" />
     <Compile Include="Commands\LambdaCommand.cs" />
+    <Compile Include="Commands\NavigateCommand.cs" />
+    <Compile Include="Commands\NavigateLoginCommand.cs" />
+    <Compile Include="Commands\NavigateRegistrationCommand.cs" />
+    <Compile Include="Commands\Store\NavigationStore.cs" />
     <Compile Include="Data\EMPLOYEES.cs">
       <DependentUpon>VOLGA_BASE.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Base\ViewModel.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\RegistrationViewModel.cs" />
     <Compile Include="Views\Pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
@@ -120,6 +128,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>VOLGA_BASE.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Windows\MainWindowViews\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\MainWindowViews\RegistrationView.xaml.cs">
+      <DependentUpon>RegistrationView.xaml</DependentUpon>
+    </Compile>
     <Page Include="Styles\Frames.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -157,6 +171,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\Windows.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\MainWindowViews\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\MainWindowViews\RegistrationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
