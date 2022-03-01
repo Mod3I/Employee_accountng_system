@@ -9,7 +9,7 @@
       Title="AddPage">
 
     <Grid>
-        <Image Source="/Resources/photage 2.png" />
+        <Image Source="/Resources/photage 2.png" Stretch="UniformToFill"/>
 
         <Grid>
             <Grid.RowDefinitions>
@@ -23,10 +23,10 @@
             </Grid.ColumnDefinitions>
             <TextBlock Text="Название" Grid.Row="0"
                    HorizontalAlignment="Right"
-                   VerticalAlignment="Center"></TextBlock>
+                   VerticalAlignment="Center"/>
             <TextBlock Text="Описание" Grid.Row="1"
                        HorizontalAlignment="Right"
-                       VerticalAlignment="Center"></TextBlock>
+                       VerticalAlignment="Center"/>
             <TextBox Text="{Binding PROJECT_NAME}"
                      Grid.Row="0" Grid.Column="1"
                  Height="36"
