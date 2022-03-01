@@ -57,5 +57,10 @@ namespace VOLGA_EAS_SIMPLE.Pages
                 MessageBox.Show(ex.Message.ToString());
             }
         }
+
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.GoBack();
+        }
     }
 }

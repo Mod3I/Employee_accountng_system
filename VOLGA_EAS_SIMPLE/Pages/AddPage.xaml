@@ -38,7 +38,9 @@
                  FontSize="24"
                  Margin="10,0"/>
             <Button HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
                     Click="Save_Click"
+                    Margin="5"
                 Height="36"
                 Width="100"
                 Grid.Column="1"
@@ -50,6 +52,20 @@
                                VerticalAlignment="Center"
                                Style="{StaticResource SmallWhiteLabel}"
                                Content="СОХРАНИТЬ"/>
+            </Button>
+            <Button HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Click="Cancel_Click"
+                    Margin="5"
+                Height="36"
+                Width="100"
+                Grid.Column="1"
+                Grid.Row="2"
+                Background="#FF006837"
+                BorderBrush="{x:Null}"
+                Foreground="{x:Null}">
+                <Label Style="{StaticResource SmallWhiteLabel}"
+                       Content="ОТМЕНА"/>
             </Button>
         </Grid>
     </Grid>
