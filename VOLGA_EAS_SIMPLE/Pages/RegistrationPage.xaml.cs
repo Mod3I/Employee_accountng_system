@@ -21,6 +21,7 @@ namespace VOLGA_EAS_SIMPLE.Pages
     public partial class RegistrationPage : Page
     {
         private USERS _currentUser = new USERS();
+        private string ConfPass;
 
         public RegistrationPage()
         {
@@ -41,15 +42,13 @@ namespace VOLGA_EAS_SIMPLE.Pages
             if (string.IsNullOrWhiteSpace(_currentUser.USER_PASSWORD))
                 errors.AppendLine("Укажите пароль");
 
-            if (_currentUser.USER_PASSWORD == _currentUser.USER_PASSWORD)
-
             if (errors.Length > 0)
             {
                 MessageBox.Show(errors.ToString());
                 return;
             }
 
-            if (_currentUser.USER_ID == 0)
+            if (_currentUser.USER_ID == 0 && _currentUser.USER_PASSWORD == ConfPass)
                 VOLGA_EAS_DBEntities.GetContext().USERS.Add(_currentUser);
 
             try
