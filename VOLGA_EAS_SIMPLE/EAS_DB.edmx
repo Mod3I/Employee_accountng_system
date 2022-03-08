@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище VOLGA_EAS_DBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище VOLGA_EAS_DBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="EMPLOYEES">
           <Key>
             <PropertyRef Name="EMPLOYEE_ID" />
@@ -33,12 +33,6 @@
           <Property Name="PROJECT_NAME" Type="nvarchar" MaxLength="50" />
           <Property Name="PROJECT_DISCRIPTION" Type="nvarchar(max)" />
         </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6013: Первичный ключ в таблице или представлении "VOLGA_EAS_DB.dbo.STAFF_ON_THE_PROJECTS" не определен, его не удалось вывести. Эта таблица или представление исключены. Чтобы использовать сущность, необходимо проверить схему, добавить правильные ключи и раскомментировать ее.
-        <EntityType Name="STAFF_ON_THE_PROJECTS">
-          <Property Name="PROJECT" Type="int" />
-          <Property Name="USER" Type="int" />
-        </EntityType>-->
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -62,6 +56,7 @@
           <Property Name="USER_DATE_OF_BIRTH" Type="nvarchar" MaxLength="50" />
           <Property Name="USER_EMPLOYEE" Type="int" />
           <Property Name="USER_DATE_OF_ADDITION" Type="nvarchar" MaxLength="50" />
+          <Property Name="USER_PASSWORD" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_EMPLOYEES_POSITIONS">
           <End Role="POSITIONS" Type="Self.POSITIONS" Multiplicity="0..1" />
@@ -75,12 +70,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Ошибки, обнаруженные при создании:
-ошибка 6004: Невозможно найти таблицу "VOLGA_EAS_DB.dbo.STAFF_ON_THE_PROJECTS", на которую ссылается связь.
-        <Association Name="FK_STAFF_ON_THE_PROJECTS_PROJECTS" />-->
-        <!--Ошибки, обнаруженные при создании:
-ошибка 6004: Невозможно найти таблицу "VOLGA_EAS_DB.dbo.STAFF_ON_THE_PROJECTS", на которую ссылается связь.
-        <Association Name="FK_STAFF_ON_THE_PROJECTS_USERS" />-->
         <Association Name="FK_USERS_EMPLOYEES">
           <End Role="EMPLOYEES" Type="Self.EMPLOYEES" Multiplicity="0..1" />
           <End Role="USERS" Type="Self.USERS" Multiplicity="*" />
@@ -139,8 +128,7 @@
             <End Role="USERS" EntitySet="USERS" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="VOLGA_EAS_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -199,6 +187,7 @@
           <Property Name="USER_EMPLOYEE" Type="Int32" />
           <Property Name="USER_DATE_OF_ADDITION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="EMPLOYEES" Relationship="Self.FK_USERS_EMPLOYEES" FromRole="USERS" ToRole="EMPLOYEES" />
+          <Property Name="USER_PASSWORD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_EMPLOYEES_POSITIONS">
           <End Role="POSITIONS" Type="Self.POSITIONS" Multiplicity="0..1" />
@@ -331,6 +320,7 @@
           <EntitySetMapping Name="USERS">
             <EntityTypeMapping TypeName="VOLGA_EAS_DBModel.USERS">
               <MappingFragment StoreEntitySet="USERS">
+                <ScalarProperty Name="USER_PASSWORD" ColumnName="USER_PASSWORD" />
                 <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
                 <ScalarProperty Name="USER_EMAIL" ColumnName="USER_EMAIL" />
                 <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />

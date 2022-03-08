@@ -31,7 +31,8 @@
                            Style="{StaticResource GrayLabelBlack}"
                            Margin="30,5"/>
 
-                    <TextBox Height="28"
+                    <TextBox Text="{Binding USER_EMAL}"
+                             Height="28"
                          Margin="30,0,30,12"
                              FontSize="20"></TextBox>
 
@@ -39,7 +40,8 @@
                            Style="{StaticResource GrayLabelBlack}"
                            Margin="30,5"/>
 
-                    <TextBox Height="28"
+                    <TextBox Text="{Binding USER_NAME}"
+                             Height="28"
                              Margin="30,0,30,12"
                              FontSize="20"></TextBox>
 
@@ -47,7 +49,7 @@
                            Style="{StaticResource GrayLabelBlack}"
                            Margin="30,5"/>
 
-                    <PasswordBox Height="28"
+                    <PasswordBox Name="Pass" Height="28"
                                  Margin="30,0,30,12"
                                  FontSize="20"/>
 
@@ -75,7 +77,7 @@
                         Foreground="{x:Null}"
                         VerticalAlignment="Top"
                         HorizontalAlignment="Right"
-                        Click="Button_Click"
+                        Click="Back_Click"
                         Height="36"
                         Width="36" Background="{x:Null}">
                     <Label VerticalAlignment="Top"

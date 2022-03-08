@@ -20,17 +20,51 @@ namespace VOLGA_EAS_SIMPLE.Pages
     /// </summary>
     public partial class RegistrationPage : Page
     {
+        private USERS _currentUser = new USERS();
+
         public RegistrationPage()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Manager.MainFrame.Navigate(new LoginPage());
+            this.DataContext = new VOLGA_EAS_DBEntities();
         }
 
         private void Login_Click(object sender, RoutedEventArgs e)
+        {
+            StringBuilder errors = new StringBuilder();
+
+            if (string.IsNullOrWhiteSpace(_currentUser.USER_EMAIL))
+                errors.AppendLine("Укажите название электронную почту");
+
+            if (string.IsNullOrWhiteSpace(_currentUser.USER_NAME))
+                errors.AppendLine("Укажите никнейм");
+
+            if (string.IsNullOrWhiteSpace(_currentUser.USER_PASSWORD))
+                errors.AppendLine("Укажите пароль");
+
+            if (_currentUser.USER_PASSWORD == _currentUser.USER_PASSWORD)
+
+            if (errors.Length > 0)
+            {
+                MessageBox.Show(errors.ToString());
+                return;
+            }
+
+            if (_currentUser.USER_ID == 0)
+                VOLGA_EAS_DBEntities.GetContext().USERS.Add(_currentUser);
+
+            try
+            {
+                VOLGA_EAS_DBEntities.GetContext().SaveChanges();
+                MessageBox.Show("Информация сохранена");
+                Manager.MainFrame.GoBack();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
         {
             Manager.MainFrame.Navigate(new LoginPage());
         }
