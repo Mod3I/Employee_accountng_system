@@ -33,7 +33,7 @@
 
                     <TextBox Text="{Binding USER_EMAL}"
                              Height="28"
-                         Margin="30,0,30,12"
+                             Margin="30,0,30,12"
                              FontSize="20"></TextBox>
 
                     <Label Content="Никнейм"
@@ -49,17 +49,27 @@
                            Style="{StaticResource GrayLabelBlack}"
                            Margin="30,5"/>
 
-                    <PasswordBox Name="Pass" Height="28"
-                                 Margin="30,0,30,12"
-                                 FontSize="20"/>
+                    <TextBox Name="Pass"
+                             FontFamily="pack://application:,,,/Fonts/#Password"
+                             CommandManager.PreviewExecuted="TextBox_PreviewExecuted"
+                             ContextMenu="{x:Null}"
+                             MaxLength="16"
+                             Height="28"
+                             Margin="30,0,30,12"
+                             FontSize="20"/>
 
                     <Label Content="Подтвердите пароль"
                            Style="{StaticResource GrayLabelBlack}"
                            Margin="30,5"/>
 
-                    <PasswordBox Height="28"
-                                 Margin="30,0,30,12"
-                                 FontSize="20"/>
+                    <TextBox Name="ProffPass"
+                             FontFamily="pack://application:,,,/Fonts/#Password"
+                             CommandManager.PreviewExecuted="TextBox_PreviewExecuted"
+                             ContextMenu="{x:Null}"
+                             MaxLength="16"
+                             Height="28"
+                             Margin="30,0,30,12"
+                             FontSize="20"/>
 
                     <Button Background="#FF006837"
                             Name="Login"

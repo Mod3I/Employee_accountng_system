@@ -64,6 +64,14 @@ namespace VOLGA_EAS_SIMPLE.Pages
             }
         }
 
+        private void TextBox_PreviewExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            // Suppress copy and paste
+            if (e.Command == ApplicationCommands.Cut || e.Command == ApplicationCommands.Copy || e.Command == ApplicationCommands.Paste)
+                e.Handled = true;
+        }
+
+
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             Manager.MainFrame.Navigate(new LoginPage());

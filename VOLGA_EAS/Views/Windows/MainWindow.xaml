@@ -13,9 +13,6 @@
         Height="450"
         Width="800"
         Style="{StaticResource WindowStyle}">
-    <!--<Window.DataContext>
-        <vm:MainWindowViewModel/>
-    </Window.DataContext>-->
     <Grid>
         <ContentControl Content="{Binding CurrentViewModel}">
             <ContentControl.Resources>
@@ -27,8 +24,7 @@
                 </DataTemplate>
             </ContentControl.Resources>
         </ContentControl>
-        <Button Height="50" Command="{Binding NavigationCommand}">
-            
+        <Button Height="50">
         </Button>
     </Grid>
 </Window>

@@ -21,7 +21,6 @@ namespace VOLGA_EAS.ViewModels
             set => Set(ref _Title, value);
         }
 
-        public ICommand NavigateCommand { get; }
 
         private readonly NavigationStore _navigationStore;
 

@@ -65,16 +65,20 @@
                     <Label Content="Логин"
                            Style="{StaticResource SmallGrayLabelBlack}"/>
 
-                    <TextBox FontSize="24"
-                        Height="36"
-                         Width="225"/>
+                    <TextBox  FontSize="20"
+                             Height="36"
+                             Width="225"/>
 
                     <Label Content="Пароль"
                            Style="{StaticResource SmallGrayLabelBlack}"/>
 
-                    <PasswordBox FontSize="24"
-                                 Height="36"
-                                 Width="225"/>
+                    <TextBox FontFamily="pack://application:,,,/Fonts/#Password"
+                             CommandManager.PreviewExecuted="TextBox_PreviewExecuted"
+                             ContextMenu="{x:Null}"
+                             MaxLength="16"
+                             FontSize="28"
+                             Height="36"
+                             Width="225"/>
 
                     <Grid Cursor="Hand"
                           Margin="0,20,0,0">
