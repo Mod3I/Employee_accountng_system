@@ -21,9 +21,13 @@ namespace VOLGA_EAS_SIMPLE.Pages
     public partial class AddPage : Page
     {
         private PROJECTS _currentProject = new PROJECTS();
-        public AddPage()
+        public AddPage(PROJECTS selectedProject)
         {
             InitializeComponent();
+
+            if (selectedProject != null)
+                _currentProject = selectedProject;
+
             DataContext = _currentProject;
         }
 

@@ -23,17 +23,37 @@ namespace VOLGA_EAS_SIMPLE.Pages
         public MainPage()
         {
             InitializeComponent();
-            DGridProjects.ItemsSource = VOLGA_EAS_DBEntities.GetContext().PROJECTS.ToList();
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-            Manager.MainFrame.Navigate(new AddPage());
+            Manager.MainFrame.Navigate(new AddPage(null));
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
+            var projectsForRemoving = DGridProjects.SelectedItems.Cast<PROJECTS>().ToList();
 
+            if (MessageBox.Show($"Вы точно желаете удаить следующие {projectsForRemoving.Count()} элементов?", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    VOLGA_EAS_DBEntities.GetContext().PROJECTS.RemoveRange(projectsForRemoving);
+                    VOLGA_EAS_DBEntities.GetContext().SaveChanges();
+                    MessageBox.Show("Элементы удалены!");
+
+                    DGridProjects.ItemsSource = VOLGA_EAS_DBEntities.GetContext().PROJECTS.ToList();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
+            }
+        }
+
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new AddPage((sender as Button).DataContext as PROJECTS));
         }
 
         private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
