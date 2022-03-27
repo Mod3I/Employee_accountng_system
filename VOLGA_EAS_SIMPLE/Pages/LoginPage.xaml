@@ -65,7 +65,9 @@
                     <Label Content="Логин"
                            Style="{StaticResource SmallGrayLabelBlack}"/>
 
-                    <TextBox  FontSize="20"
+                    <TextBox Text="{Binding USER_NAME}"
+                             x:Name="Loging"
+                             FontSize="20"
                              Height="36"
                              Width="225"/>
 
@@ -75,6 +77,8 @@
                     <TextBox FontFamily="pack://application:,,,/Fonts/#Password"
                              CommandManager.PreviewExecuted="TextBox_PreviewExecuted"
                              ContextMenu="{x:Null}"
+                             Text="{Binding USER_PASSWORD}"
+                             x:Name="Passwordg"
                              MaxLength="16"
                              FontSize="28"
                              Height="36"
