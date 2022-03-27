@@ -79,6 +79,9 @@
     <Compile Include="Pages\AddPage.xaml.cs">
       <DependentUpon>AddPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\MainPageWithSort.xaml.cs">
+      <DependentUpon>MainPageWithSort.xaml</DependentUpon>
+    </Compile>
     <Compile Include="POSITIONS.cs">
       <DependentUpon>EAS_DB.tt</DependentUpon>
     </Compile>
@@ -128,6 +131,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MainPageWithSort.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -205,6 +212,7 @@
       <DependentUpon>EAS_DB.edmx</DependentUpon>
       <LastGenOutput>EAS_DB.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\VOLGA LOGO1.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
