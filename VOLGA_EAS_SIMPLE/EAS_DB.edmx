@@ -32,6 +32,7 @@
           <Property Name="PROJECT_ID" Type="int" Nullable="false" />
           <Property Name="PROJECT_NAME" Type="nvarchar" MaxLength="50" />
           <Property Name="PROJECT_DISCRIPTION" Type="nvarchar(max)" />
+          <Property Name="PROJECT_IMAGE" Type="image" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -162,6 +163,7 @@
           <Property Name="PROJECT_ID" Type="Int32" Nullable="false" />
           <Property Name="PROJECT_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PROJECT_DISCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PROJECT_IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -300,6 +302,7 @@
           <EntitySetMapping Name="PROJECTS">
             <EntityTypeMapping TypeName="VOLGA_EAS_DBModel.PROJECTS">
               <MappingFragment StoreEntitySet="PROJECTS">
+                <ScalarProperty Name="PROJECT_IMAGE" ColumnName="PROJECT_IMAGE" />
                 <ScalarProperty Name="PROJECT_ID" ColumnName="PROJECT_ID" />
                 <ScalarProperty Name="PROJECT_NAME" ColumnName="PROJECT_NAME" />
                 <ScalarProperty Name="PROJECT_DISCRIPTION" ColumnName="PROJECT_DISCRIPTION" />

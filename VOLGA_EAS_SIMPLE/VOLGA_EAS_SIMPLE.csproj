@@ -212,7 +212,7 @@
       <DependentUpon>EAS_DB.edmx</DependentUpon>
       <LastGenOutput>EAS_DB.cs</LastGenOutput>
     </Content>
-    <Resource Include="Resources\VOLGA LOGO1.png" />
+    <Resource Include="Resources\VOLGALOGO1.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

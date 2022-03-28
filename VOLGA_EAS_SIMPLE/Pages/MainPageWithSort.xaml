@@ -6,17 +6,26 @@
       xmlns:local="clr-namespace:VOLGA_EAS_SIMPLE.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="MainPageWithSort">
+      Title="MainPageWithSort"
+      >
+    <Page.Background>
+        <ImageBrush Stretch="UniformToFill" ImageSource="/VOLGA_EAS_SIMPLE;component/Resources/photage 2.png"/>
+    </Page.Background>
 
     <Grid>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Image Source="/Resources/photage 2.png"
-                   Stretch="UniformToFill"/>
-            <ListView Grid.Row="1" Name="LVProjects">
+        <StackPanel Orientation="Horizontal">
+           
+            <ListView Grid.Row="1"
+                      Name="LVProjects"
+                      BorderBrush="{x:Null}"
+                      HorizontalAlignment="Left"
+                      Margin="10"
+                      Width="500" Opacity="0.5">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Vertical" ScrollViewer.HorizontalScrollBarVisibility="Hidden"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid>
@@ -24,34 +33,95 @@
                                 <RowDefinition/>
                                 <RowDefinition/>
                                 <RowDefinition/>
+                                <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Image Stretch="UniformToFill"
+                                   HorizontalAlignment="Center"
                                    Margin="5"
                                    Width="250"
                                    Height="250"
                                    Grid.Row="1">
                                 <Image.Source>
-                                    <Binding Path="ImagePreview">
+                                    <Binding Path="PROJECT_IMAGE">
                                         <Binding.TargetNullValue>
-                                            <ImageSource>Respurces/VOLGA LOGO1.png</ImageSource>
+                                            <ImageSource>/Resources/VOLGALOGO1.png</ImageSource>
                                         </Binding.TargetNullValue>
                                     </Binding>
                                 </Image.Source>
                             </Image>
-                            <Label Content="name"
+                            <Label Content="{Binding PROJECT_NAME}"
                                    VerticalAlignment="Center"
                                    HorizontalAlignment="Center"
+                                   Style="{StaticResource SmallGrayLabelBlack}"
                                    Margin="5"
                                    Grid.Row="0"/>
-                            <Label Content="discription"
+                            <Label Content="{Binding PROJECT_DISCRIPTION}"
                                    VerticalAlignment="Center"
                                    HorizontalAlignment="Center"
+                                   Style="{StaticResource SmallGrayLabelBlack}"
                                    Grid.Row="2"
                                    Margin="5"/>
+                            <Button x:Name="DeleteProject"
+                                            HorizontalAlignment="Center"
+                                            Click="Edit_Click"
+                                    Grid.Row="3"
+                                            Margin="5,0"
+                                            Height="36"
+                                            Width="125"
+                                            Background="#FF006837"
+                                            BorderBrush="{x:Null}"
+                                            Foreground="{x:Null}">
+                                <Label HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               Style="{StaticResource SmallWhiteLabel}"
+                                               Content="РЕДАКТИРОВАТЬ"/>
+                            </Button>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-        </Grid>
+            <StackPanel Orientation="Vertical"
+                        Margin="0,7">
+                <Label Content="Введите название"
+                           Style="{StaticResource NormalGrayLabelBlack}"/>
+                <TextBox Name="TBoxSearch"
+                         TextChanged="TBoxSearch_TextChanged"
+                         HorizontalAlignment="Left"
+                         Height="18"
+                         Width="250"/>
+                <CheckBox Name="CheckNoNull"
+                          Checked="CheckNoNull_Checked"
+                          Unchecked="CheckNoNull_Checked"
+                          Content="Показывать проекты только с описанием"/>
+                <Button x:Name="AddProject"
+                        HorizontalAlignment="Left"
+                        Click="Add_Click"
+                        Margin="0,5"
+                        Height="36"
+                        Width="250"
+                        Background="#FF006837"
+                        BorderBrush="{x:Null}"
+                        Foreground="{x:Null}">
+                    <Label HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource SmallWhiteLabel}"
+                               Content="ДОБАВИТЬ"/>
+                </Button>
+                <Button x:Name="DeleteProject"
+                        HorizontalAlignment="Left"
+                        Click="Delete_Click"
+                        Margin="0,5"
+                        Height="36"
+                        Width="250"
+                        Background="#FF006837"
+                        BorderBrush="{x:Null}"
+                        Foreground="{x:Null}">
+                    <Label HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource SmallWhiteLabel}"
+                               Content="УДАЛИТЬ"/>
+                </Button>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Page>

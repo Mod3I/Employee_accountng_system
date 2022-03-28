@@ -64,7 +64,7 @@ namespace VOLGA_EAS_SIMPLE.Pages
             if (count1 > 0)
             {
                 connection1.Close();
-                Manager.MainFrame.Navigate(new MainPage());
+                Manager.MainFrame.Navigate(new MainPageWithSort());
             }
             else
             {

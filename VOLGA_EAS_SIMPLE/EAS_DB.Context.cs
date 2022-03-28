@@ -31,10 +31,11 @@ namespace VOLGA_EAS_SIMPLE
 
             return _context;
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
+            //modelBuilder.Conventions.Remove<PluralizationTableNameConvention>();
         }
     
         public virtual DbSet<EMPLOYEES> EMPLOYEES { get; set; }

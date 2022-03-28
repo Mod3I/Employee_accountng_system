@@ -17,5 +17,6 @@ namespace VOLGA_EAS_SIMPLE
         public int PROJECT_ID { get; set; }
         public string PROJECT_NAME { get; set; }
         public string PROJECT_DISCRIPTION { get; set; }
+        public byte[] PROJECT_IMAGE { get; set; }
     }
 }
