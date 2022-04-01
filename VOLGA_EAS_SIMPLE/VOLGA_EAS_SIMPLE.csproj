@@ -68,13 +68,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="EAS_DB.cs">
+    <Compile Include="EAS_DB_Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>EAS_DB.tt</DependentUpon>
+      <DependentUpon>EAS_DB_Model.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="EMPLOYEES.cs">
-      <DependentUpon>EAS_DB.tt</DependentUpon>
+    <Compile Include="EAS_DB_Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EAS_DB_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EAS_DB_Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EAS_DB_Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="EMPLOYEE.cs">
+      <DependentUpon>EAS_DB_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Pages\AddPage.xaml.cs">
       <DependentUpon>AddPage.xaml</DependentUpon>
@@ -82,23 +92,20 @@
     <Compile Include="Pages\MainPageWithSort.xaml.cs">
       <DependentUpon>MainPageWithSort.xaml</DependentUpon>
     </Compile>
-    <Compile Include="POSITIONS.cs">
-      <DependentUpon>EAS_DB.tt</DependentUpon>
+    <Compile Include="POSITION.cs">
+      <DependentUpon>EAS_DB_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="PROJECTS.cs">
-      <DependentUpon>EAS_DB.tt</DependentUpon>
+    <Compile Include="PROJECT.cs">
+      <DependentUpon>EAS_DB_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>EAS_DB.tt</DependentUpon>
+    <Compile Include="PROJECT_STAFF.cs">
+      <DependentUpon>EAS_DB_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="sp_helpdiagrams_Result.cs">
-      <DependentUpon>EAS_DB.tt</DependentUpon>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>EAS_DB_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="sysdiagrams.cs">
-      <DependentUpon>EAS_DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="USERS.cs">
-      <DependentUpon>EAS_DB.tt</DependentUpon>
+    <Compile Include="USER.cs">
+      <DependentUpon>EAS_DB_Model.tt</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -107,16 +114,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="EAS_DB.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EAS_DB.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EAS_DB.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EAS_DB.edmx</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -175,14 +172,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="EAS_DB.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>EAS_DB.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="EAS_DB.edmx.diagram">
-      <DependentUpon>EAS_DB.edmx</DependentUpon>
-    </None>
     <Resource Include="Fonts\password.ttf" />
+    <EntityDeploy Include="EAS_DB_Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>EAS_DB_Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="EAS_DB_Model.edmx.diagram">
+      <DependentUpon>EAS_DB_Model.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -202,22 +199,27 @@
     <Resource Include="Resources\f2.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="EAS_DB.Context.tt">
+    <Content Include="EAS_DB_Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>EAS_DB.Context.cs</LastGenOutput>
-      <DependentUpon>EAS_DB.edmx</DependentUpon>
+      <DependentUpon>EAS_DB_Model.edmx</DependentUpon>
+      <LastGenOutput>EAS_DB_Model.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="EAS_DB.tt">
+    <Content Include="EAS_DB_Model.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EAS_DB.edmx</DependentUpon>
-      <LastGenOutput>EAS_DB.cs</LastGenOutput>
+      <DependentUpon>EAS_DB_Model.edmx</DependentUpon>
+      <LastGenOutput>EAS_DB_Model.cs</LastGenOutput>
     </Content>
     <Resource Include="Resources\VOLGALOGO1.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\VOLGA_EAS\VOLGA_EAS.csproj">
+      <Project>{A8B6D092-D862-4159-8C2A-759418E0F141}</Project>
+      <Name>VOLGA_EAS</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

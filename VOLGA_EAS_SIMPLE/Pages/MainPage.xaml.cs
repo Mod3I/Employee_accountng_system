@@ -32,17 +32,17 @@ namespace VOLGA_EAS_SIMPLE.Pages
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            var projectsForRemoving = DGridProjects.SelectedItems.Cast<PROJECTS>().ToList();
+            var projectsForRemoving = DGridProjects.SelectedItems.Cast<PROJECT>().ToList();
 
             if (MessageBox.Show($"Вы точно желаете удаить следующие {projectsForRemoving.Count()} элементов?", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 try
                 {
-                    VOLGA_EAS_DBEntities.GetContext().PROJECTS.RemoveRange(projectsForRemoving);
-                    VOLGA_EAS_DBEntities.GetContext().SaveChanges();
+                    VOLGA_EAS_DBEntities1.GetContext().PROJECTS.RemoveRange(projectsForRemoving);
+                    VOLGA_EAS_DBEntities1.GetContext().SaveChanges();
                     MessageBox.Show("Элементы удалены!");
 
-                    DGridProjects.ItemsSource = VOLGA_EAS_DBEntities.GetContext().PROJECTS.ToList();
+                    DGridProjects.ItemsSource = VOLGA_EAS_DBEntities1.GetContext().PROJECTS.ToList();
                 }
                 catch (Exception ex)
                 {
@@ -53,15 +53,15 @@ namespace VOLGA_EAS_SIMPLE.Pages
 
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
-            Manager.MainFrame.Navigate(new AddPage((sender as Button).DataContext as PROJECTS));
+            Manager.MainFrame.Navigate(new AddPage((sender as Button).DataContext as PROJECT));
         }
 
         private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if (Visibility == Visibility.Visible)
             {
-                VOLGA_EAS_DBEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
-                DGridProjects.ItemsSource = VOLGA_EAS_DBEntities.GetContext().PROJECTS.ToList();
+                VOLGA_EAS_DBEntities1.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
+                DGridProjects.ItemsSource = VOLGA_EAS_DBEntities1.GetContext().PROJECTS.ToList();
             }
         }
     }

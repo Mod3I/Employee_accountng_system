@@ -7,23 +7,30 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace VOLGA_EAS.Data
+namespace VOLGA_EAS_SIMPLE
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class POSITIONS
+    public partial class EMPLOYEE
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public POSITIONS()
+        public EMPLOYEE()
         {
-            this.EMPLOYEES = new HashSet<EMPLOYEES>();
+            this.USERS = new HashSet<USER>();
         }
     
-        public int POSITION_ID { get; set; }
-        public string POSITION_NAME { get; set; }
+        public int EMPLOYEE_ID { get; set; }
+        public string EMPLOYEE_FIRST_NAME { get; set; }
+        public string EMPLOYEE_SECOND_NAME { get; set; }
+        public string EMPLOYEE_PATRONYMIC { get; set; }
+        public string EMPLOYEE_PHONE_NUMBER { get; set; }
+        public Nullable<int> EMPLOYEE_POSITION { get; set; }
+        public string EMPLOYEE_DATE_OF_BIRTH { get; set; }
+        public string EMPLOYEE_DATE_OF_ADDITION { get; set; }
     
+        public virtual POSITION POSITION { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EMPLOYEES> EMPLOYEES { get; set; }
+        public virtual ICollection<USER> USERS { get; set; }
     }
 }

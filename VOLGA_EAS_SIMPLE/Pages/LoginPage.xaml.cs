@@ -22,7 +22,7 @@ namespace VOLGA_EAS_SIMPLE.Pages
     /// </summary>
     public partial class LoginPage : Page
     {
-        private USERS _selectedUser = new USERS();
+        private USER _selectedUser = new USER();
 
         public LoginPage()
         {

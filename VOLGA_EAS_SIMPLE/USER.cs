@@ -7,30 +7,32 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace VOLGA_EAS.Data
+namespace VOLGA_EAS_SIMPLE
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class EMPLOYEES
+    public partial class USER
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public EMPLOYEES()
+        public USER()
         {
-            this.USERS = new HashSet<USERS>();
+            this.PROJECT_STAFF = new HashSet<PROJECT_STAFF>();
         }
     
-        public int EMPLOYEE_ID { get; set; }
-        public string EMPLOYEE_FIRST_NAME { get; set; }
-        public string EMPLOYEE_SECOND_NAME { get; set; }
-        public string EMPLOYEE_PATRONYMIC { get; set; }
-        public string EMPLOYEE_PHONE_NUMBER { get; set; }
-        public Nullable<int> EMPLOYEE_POSITION { get; set; }
-        public string EMPLOYEE_DATE_OF_BIRTH { get; set; }
-        public string EMPLOYEE_DATE_OF_ADDITION { get; set; }
+        public int USER_ID { get; set; }
+        public string USER_EMAIL { get; set; }
+        public string USER_NAME { get; set; }
+        public string USER_FIRST_NAME { get; set; }
+        public string USER_SECOND_NAME { get; set; }
+        public string USER_PATRONYMIC { get; set; }
+        public string USER_DATE_OF_BIRTH { get; set; }
+        public Nullable<int> USER_EMPLOYEE { get; set; }
+        public string USER_DATE_OF_ADDITION { get; set; }
+        public string USER_PASSWORD { get; set; }
     
-        public virtual POSITIONS POSITIONS { get; set; }
+        public virtual EMPLOYEE EMPLOYEE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<USERS> USERS { get; set; }
+        public virtual ICollection<PROJECT_STAFF> PROJECT_STAFF { get; set; }
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Хранилище VOLGA_EAS_DBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище VOLGA_EAS_DBModel1" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="EMPLOYEES">
           <Key>
             <PropertyRef Name="EMPLOYEE_ID" />
@@ -24,6 +24,16 @@
           </Key>
           <Property Name="POSITION_ID" Type="int" Nullable="false" />
           <Property Name="POSITION_NAME" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PROJECT_STAFF">
+          <Key>
+            <PropertyRef Name="PROJECT" />
+            <PropertyRef Name="USER" />
+          </Key>
+          <Property Name="PROJECT" Type="int" Nullable="false" />
+          <Property Name="USER" Type="int" Nullable="false" />
+          <Property Name="START_OF_WORK" Type="nvarchar" MaxLength="50" />
+          <Property Name="END_OF_WORK" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="PROJECTS">
           <Key>
@@ -71,6 +81,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_STAFF_ON_THE_PROJECTS_PROJECTS">
+          <End Role="PROJECTS" Type="Self.PROJECTS" Multiplicity="1" />
+          <End Role="PROJECT_STAFF" Type="Self.PROJECT_STAFF" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROJECTS">
+              <PropertyRef Name="PROJECT_ID" />
+            </Principal>
+            <Dependent Role="PROJECT_STAFF">
+              <PropertyRef Name="PROJECT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STAFF_ON_THE_PROJECTS_USERS">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+          <End Role="PROJECT_STAFF" Type="Self.PROJECT_STAFF" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="PROJECT_STAFF">
+              <PropertyRef Name="USER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_USERS_EMPLOYEES">
           <End Role="EMPLOYEES" Type="Self.EMPLOYEES" Multiplicity="0..1" />
           <End Role="USERS" Type="Self.USERS" Multiplicity="*" />
@@ -83,40 +117,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
-        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <EntityContainer Name="Хранилище VOLGA_EAS_DBModelContainer">
+        <EntityContainer Name="Хранилище VOLGA_EAS_DBModel1Container">
           <EntitySet Name="EMPLOYEES" EntityType="Self.EMPLOYEES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="POSITIONS" EntityType="Self.POSITIONS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PROJECT_STAFF" EntityType="Self.PROJECT_STAFF" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PROJECTS" EntityType="Self.PROJECTS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
@@ -124,16 +128,25 @@
             <End Role="POSITIONS" EntitySet="POSITIONS" />
             <End Role="EMPLOYEES" EntitySet="EMPLOYEES" />
           </AssociationSet>
+          <AssociationSet Name="FK_STAFF_ON_THE_PROJECTS_PROJECTS" Association="Self.FK_STAFF_ON_THE_PROJECTS_PROJECTS">
+            <End Role="PROJECTS" EntitySet="PROJECTS" />
+            <End Role="PROJECT_STAFF" EntitySet="PROJECT_STAFF" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STAFF_ON_THE_PROJECTS_USERS" Association="Self.FK_STAFF_ON_THE_PROJECTS_USERS">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="PROJECT_STAFF" EntitySet="PROJECT_STAFF" />
+          </AssociationSet>
           <AssociationSet Name="FK_USERS_EMPLOYEES" Association="Self.FK_USERS_EMPLOYEES">
             <End Role="EMPLOYEES" EntitySet="EMPLOYEES" />
             <End Role="USERS" EntitySet="USERS" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="VOLGA_EAS_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="EMPLOYEES">
+      <Schema Namespace="VOLGA_EAS_DBModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="EMPLOYEE">
           <Key>
             <PropertyRef Name="EMPLOYEE_ID" />
           </Key>
@@ -145,10 +158,10 @@
           <Property Name="EMPLOYEE_POSITION" Type="Int32" />
           <Property Name="EMPLOYEE_DATE_OF_BIRTH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="EMPLOYEE_DATE_OF_ADDITION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="POSITIONS" Relationship="Self.FK_EMPLOYEES_POSITIONS" FromRole="EMPLOYEES" ToRole="POSITIONS" />
+          <NavigationProperty Name="POSITION" Relationship="Self.FK_EMPLOYEES_POSITIONS" FromRole="EMPLOYEES" ToRole="POSITIONS" />
           <NavigationProperty Name="USERS" Relationship="Self.FK_USERS_EMPLOYEES" FromRole="EMPLOYEES" ToRole="USERS" />
         </EntityType>
-        <EntityType Name="POSITIONS">
+        <EntityType Name="POSITION">
           <Key>
             <PropertyRef Name="POSITION_ID" />
           </Key>
@@ -156,7 +169,19 @@
           <Property Name="POSITION_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="EMPLOYEES" Relationship="Self.FK_EMPLOYEES_POSITIONS" FromRole="POSITIONS" ToRole="EMPLOYEES" />
         </EntityType>
-        <EntityType Name="PROJECTS">
+        <EntityType Name="PROJECT_STAFF">
+          <Key>
+            <PropertyRef Name="PROJECT" />
+            <PropertyRef Name="USER" />
+          </Key>
+          <Property Name="PROJECT" Type="Int32" Nullable="false" />
+          <Property Name="USER" Type="Int32" Nullable="false" />
+          <Property Name="START_OF_WORK" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="END_OF_WORK" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PROJECT1" Relationship="Self.FK_STAFF_ON_THE_PROJECTS_PROJECTS" FromRole="PROJECT_STAFF" ToRole="PROJECTS" />
+          <NavigationProperty Name="USER1" Relationship="Self.FK_STAFF_ON_THE_PROJECTS_USERS" FromRole="PROJECT_STAFF" ToRole="USERS" />
+        </EntityType>
+        <EntityType Name="PROJECT">
           <Key>
             <PropertyRef Name="PROJECT_ID" />
           </Key>
@@ -164,8 +189,9 @@
           <Property Name="PROJECT_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PROJECT_DISCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="PROJECT_IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="PROJECT_STAFF" Relationship="Self.FK_STAFF_ON_THE_PROJECTS_PROJECTS" FromRole="PROJECTS" ToRole="PROJECT_STAFF" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
+        <EntityType Name="sysdiagram">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
@@ -175,7 +201,7 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="USERS">
+        <EntityType Name="USER">
           <Key>
             <PropertyRef Name="USER_ID" />
           </Key>
@@ -188,12 +214,13 @@
           <Property Name="USER_DATE_OF_BIRTH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="USER_EMPLOYEE" Type="Int32" />
           <Property Name="USER_DATE_OF_ADDITION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="EMPLOYEES" Relationship="Self.FK_USERS_EMPLOYEES" FromRole="USERS" ToRole="EMPLOYEES" />
           <Property Name="USER_PASSWORD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EMPLOYEE" Relationship="Self.FK_USERS_EMPLOYEES" FromRole="USERS" ToRole="EMPLOYEES" />
+          <NavigationProperty Name="PROJECT_STAFF" Relationship="Self.FK_STAFF_ON_THE_PROJECTS_USERS" FromRole="USERS" ToRole="PROJECT_STAFF" />
         </EntityType>
         <Association Name="FK_EMPLOYEES_POSITIONS">
-          <End Role="POSITIONS" Type="Self.POSITIONS" Multiplicity="0..1" />
-          <End Role="EMPLOYEES" Type="Self.EMPLOYEES" Multiplicity="*" />
+          <End Role="POSITIONS" Type="Self.POSITION" Multiplicity="0..1" />
+          <End Role="EMPLOYEES" Type="Self.EMPLOYEE" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="POSITIONS">
               <PropertyRef Name="POSITION_ID" />
@@ -204,8 +231,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_USERS_EMPLOYEES">
-          <End Role="EMPLOYEES" Type="Self.EMPLOYEES" Multiplicity="0..1" />
-          <End Role="USERS" Type="Self.USERS" Multiplicity="*" />
+          <End Role="EMPLOYEES" Type="Self.EMPLOYEE" Multiplicity="0..1" />
+          <End Role="USERS" Type="Self.USER" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="EMPLOYEES">
               <PropertyRef Name="EMPLOYEE_ID" />
@@ -215,12 +242,37 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="VOLGA_EAS_DBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="EMPLOYEES" EntityType="Self.EMPLOYEES" />
-          <EntitySet Name="POSITIONS" EntityType="Self.POSITIONS" />
-          <EntitySet Name="PROJECTS" EntityType="Self.PROJECTS" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="USERS" EntityType="Self.USERS" />
+        <Association Name="FK_STAFF_ON_THE_PROJECTS_PROJECTS">
+          <End Role="PROJECTS" Type="Self.PROJECT" Multiplicity="1" />
+          <End Role="PROJECT_STAFF" Type="Self.PROJECT_STAFF" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROJECTS">
+              <PropertyRef Name="PROJECT_ID" />
+            </Principal>
+            <Dependent Role="PROJECT_STAFF">
+              <PropertyRef Name="PROJECT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STAFF_ON_THE_PROJECTS_USERS">
+          <End Role="USERS" Type="Self.USER" Multiplicity="1" />
+          <End Role="PROJECT_STAFF" Type="Self.PROJECT_STAFF" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="PROJECT_STAFF">
+              <PropertyRef Name="USER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="VOLGA_EAS_DBEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="EMPLOYEES" EntityType="Self.EMPLOYEE" />
+          <EntitySet Name="POSITIONS" EntityType="Self.POSITION" />
+          <EntitySet Name="PROJECT_STAFF" EntityType="Self.PROJECT_STAFF" />
+          <EntitySet Name="PROJECTS" EntityType="Self.PROJECT" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="USERS" EntityType="Self.USER" />
           <AssociationSet Name="FK_EMPLOYEES_POSITIONS" Association="Self.FK_EMPLOYEES_POSITIONS">
             <End Role="POSITIONS" EntitySet="POSITIONS" />
             <End Role="EMPLOYEES" EntitySet="EMPLOYEES" />
@@ -229,56 +281,23 @@
             <End Role="EMPLOYEES" EntitySet="EMPLOYEES" />
             <End Role="USERS" EntitySet="USERS" />
           </AssociationSet>
-          <FunctionImport Name="sp_alterdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_creatediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_dropdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(VOLGA_EAS_DBModel.sp_helpdiagramdefinition_Result)">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(VOLGA_EAS_DBModel.sp_helpdiagrams_Result)">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_renamediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="new_diagramname" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="sp_upgraddiagrams" />
+          <AssociationSet Name="FK_STAFF_ON_THE_PROJECTS_PROJECTS" Association="Self.FK_STAFF_ON_THE_PROJECTS_PROJECTS">
+            <End Role="PROJECTS" EntitySet="PROJECTS" />
+            <End Role="PROJECT_STAFF" EntitySet="PROJECT_STAFF" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STAFF_ON_THE_PROJECTS_USERS" Association="Self.FK_STAFF_ON_THE_PROJECTS_USERS">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="PROJECT_STAFF" EntitySet="PROJECT_STAFF" />
+          </AssociationSet>
         </EntityContainer>
-        <ComplexType Name="sp_helpdiagramdefinition_Result">
-          <Property Type="Int32" Name="version" Nullable="true" />
-          <Property Type="Binary" Name="definition" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="sp_helpdiagrams_Result">
-          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
-          <Property Type="Int32" Name="ID" Nullable="false" />
-          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
-          <Property Type="Int32" Name="OwnerID" Nullable="false" />
-        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище VOLGA_EAS_DBModelContainer" CdmEntityContainer="VOLGA_EAS_DBEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище VOLGA_EAS_DBModel1Container" CdmEntityContainer="VOLGA_EAS_DBEntities1">
           <EntitySetMapping Name="EMPLOYEES">
-            <EntityTypeMapping TypeName="VOLGA_EAS_DBModel.EMPLOYEES">
+            <EntityTypeMapping TypeName="VOLGA_EAS_DBModel1.EMPLOYEE">
               <MappingFragment StoreEntitySet="EMPLOYEES">
                 <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
                 <ScalarProperty Name="EMPLOYEE_FIRST_NAME" ColumnName="EMPLOYEE_FIRST_NAME" />
@@ -292,25 +311,35 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="POSITIONS">
-            <EntityTypeMapping TypeName="VOLGA_EAS_DBModel.POSITIONS">
+            <EntityTypeMapping TypeName="VOLGA_EAS_DBModel1.POSITION">
               <MappingFragment StoreEntitySet="POSITIONS">
                 <ScalarProperty Name="POSITION_ID" ColumnName="POSITION_ID" />
                 <ScalarProperty Name="POSITION_NAME" ColumnName="POSITION_NAME" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="PROJECT_STAFF">
+            <EntityTypeMapping TypeName="VOLGA_EAS_DBModel1.PROJECT_STAFF">
+              <MappingFragment StoreEntitySet="PROJECT_STAFF">
+                <ScalarProperty Name="PROJECT" ColumnName="PROJECT" />
+                <ScalarProperty Name="USER" ColumnName="USER" />
+                <ScalarProperty Name="START_OF_WORK" ColumnName="START_OF_WORK" />
+                <ScalarProperty Name="END_OF_WORK" ColumnName="END_OF_WORK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="PROJECTS">
-            <EntityTypeMapping TypeName="VOLGA_EAS_DBModel.PROJECTS">
+            <EntityTypeMapping TypeName="VOLGA_EAS_DBModel1.PROJECT">
               <MappingFragment StoreEntitySet="PROJECTS">
-                <ScalarProperty Name="PROJECT_IMAGE" ColumnName="PROJECT_IMAGE" />
                 <ScalarProperty Name="PROJECT_ID" ColumnName="PROJECT_ID" />
                 <ScalarProperty Name="PROJECT_NAME" ColumnName="PROJECT_NAME" />
                 <ScalarProperty Name="PROJECT_DISCRIPTION" ColumnName="PROJECT_DISCRIPTION" />
+                <ScalarProperty Name="PROJECT_IMAGE" ColumnName="PROJECT_IMAGE" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="VOLGA_EAS_DBModel.sysdiagrams">
+            <EntityTypeMapping TypeName="VOLGA_EAS_DBModel1.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -321,9 +350,8 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="USERS">
-            <EntityTypeMapping TypeName="VOLGA_EAS_DBModel.USERS">
+            <EntityTypeMapping TypeName="VOLGA_EAS_DBModel1.USER">
               <MappingFragment StoreEntitySet="USERS">
-                <ScalarProperty Name="USER_PASSWORD" ColumnName="USER_PASSWORD" />
                 <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
                 <ScalarProperty Name="USER_EMAIL" ColumnName="USER_EMAIL" />
                 <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
@@ -333,33 +361,10 @@
                 <ScalarProperty Name="USER_DATE_OF_BIRTH" ColumnName="USER_DATE_OF_BIRTH" />
                 <ScalarProperty Name="USER_EMPLOYEE" ColumnName="USER_EMPLOYEE" />
                 <ScalarProperty Name="USER_DATE_OF_ADDITION" ColumnName="USER_DATE_OF_ADDITION" />
+                <ScalarProperty Name="USER_PASSWORD" ColumnName="USER_PASSWORD" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище VOLGA_EAS_DBModel.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище VOLGA_EAS_DBModel.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище VOLGA_EAS_DBModel.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Хранилище VOLGA_EAS_DBModel.sp_helpdiagramdefinition">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="VOLGA_EAS_DBModel.sp_helpdiagramdefinition_Result">
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище VOLGA_EAS_DBModel.sp_helpdiagrams">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="VOLGA_EAS_DBModel.sp_helpdiagrams_Result">
-                <ScalarProperty Name="Database" ColumnName="Database" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Owner" ColumnName="Owner" />
-                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище VOLGA_EAS_DBModel.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище VOLGA_EAS_DBModel.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -374,7 +379,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />

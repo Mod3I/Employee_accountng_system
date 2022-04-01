@@ -12,11 +12,20 @@ namespace VOLGA_EAS_SIMPLE
     using System;
     using System.Collections.Generic;
     
-    public partial class PROJECTS
+    public partial class PROJECT
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public PROJECT()
+        {
+            this.PROJECT_STAFF = new HashSet<PROJECT_STAFF>();
+        }
+    
         public int PROJECT_ID { get; set; }
         public string PROJECT_NAME { get; set; }
         public string PROJECT_DISCRIPTION { get; set; }
         public byte[] PROJECT_IMAGE { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PROJECT_STAFF> PROJECT_STAFF { get; set; }
     }
 }

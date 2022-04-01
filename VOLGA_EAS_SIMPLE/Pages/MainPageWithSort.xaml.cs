@@ -24,14 +24,14 @@ namespace VOLGA_EAS_SIMPLE.Pages
         {
             InitializeComponent();
 
-            var currentProject = VOLGA_EAS_DBEntities.GetContext().PROJECTS.ToList();
+            var currentProject = VOLGA_EAS_DBEntities1.GetContext().PROJECTS.ToList();
             LVProjects.ItemsSource = currentProject;
             CheckNoNull.IsChecked = true;
         }
 
         private void UpdateProjects()
         {
-            var currentProject = VOLGA_EAS_DBEntities.GetContext().PROJECTS.ToList();
+            var currentProject = VOLGA_EAS_DBEntities1.GetContext().PROJECTS.ToList();
 
             currentProject = currentProject.Where(p => p.PROJECT_NAME.ToLower().Contains(TBoxSearch.Text.ToLower())).ToList();
 
@@ -58,7 +58,7 @@ namespace VOLGA_EAS_SIMPLE.Pages
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            var projectsForRemoving = LVProjects.SelectedItems.Cast<PROJECTS>().ToList();
+            var projectsForRemoving = LVProjects.SelectedItems.Cast<PROJECT>().ToList();
 
             if (projectsForRemoving.Count() > 0)
             {
@@ -66,11 +66,11 @@ namespace VOLGA_EAS_SIMPLE.Pages
                 {
                     try
                     {
-                        VOLGA_EAS_DBEntities.GetContext().PROJECTS.RemoveRange(projectsForRemoving);
-                        VOLGA_EAS_DBEntities.GetContext().SaveChanges();
+                        VOLGA_EAS_DBEntities1.GetContext().PROJECTS.RemoveRange(projectsForRemoving);
+                        VOLGA_EAS_DBEntities1.GetContext().SaveChanges();
                         MessageBox.Show("Элементы удалены!");
 
-                        LVProjects.ItemsSource = VOLGA_EAS_DBEntities.GetContext().PROJECTS.ToList();
+                        LVProjects.ItemsSource = VOLGA_EAS_DBEntities1.GetContext().PROJECTS.ToList();
                     }
                     catch (Exception ex)
                     {
@@ -86,7 +86,7 @@ namespace VOLGA_EAS_SIMPLE.Pages
 
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
-            Manager.MainFrame.Navigate(new AddPage((sender as Button).DataContext as PROJECTS));
+            Manager.MainFrame.Navigate(new AddPage((sender as Button).DataContext as PROJECT));
         }
 
         //private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)

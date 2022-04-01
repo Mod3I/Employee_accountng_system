@@ -7,16 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace VOLGA_EAS.Data
+namespace VOLGA_EAS_SIMPLE
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class sp_helpdiagrams_Result
+    public partial class PROJECT_STAFF
     {
-        public string Database { get; set; }
-        public string Name { get; set; }
-        public int ID { get; set; }
-        public string Owner { get; set; }
-        public int OwnerID { get; set; }
+        public int PROJECT { get; set; }
+        public int USER { get; set; }
+        public string START_OF_WORK { get; set; }
+        public string END_OF_WORK { get; set; }
+    
+        public virtual PROJECT PROJECT1 { get; set; }
+        public virtual USER USER1 { get; set; }
     }
 }

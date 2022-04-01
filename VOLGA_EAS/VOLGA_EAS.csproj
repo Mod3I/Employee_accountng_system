@@ -82,9 +82,6 @@
     <Compile Include="Commands\NavigateLoginCommand.cs" />
     <Compile Include="Commands\NavigateRegistrationCommand.cs" />
     <Compile Include="Commands\Store\NavigationStore.cs" />
-    <Compile Include="Data\EMPLOYEES.cs">
-      <DependentUpon>VOLGA_BASE.tt</DependentUpon>
-    </Compile>
     <Compile Include="ViewModels\Base\ViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
@@ -94,39 +91,6 @@
     </Compile>
     <Compile Include="Views\Pages\RegistrationPage.xaml.cs">
       <DependentUpon>RegistrationPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Data\POSITIONS.cs">
-      <DependentUpon>VOLGA_BASE.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\PROJECTS.cs">
-      <DependentUpon>VOLGA_BASE.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>VOLGA_BASE.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\sp_helpdiagrams_Result.cs">
-      <DependentUpon>VOLGA_BASE.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\sysdiagrams.cs">
-      <DependentUpon>VOLGA_BASE.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\USERS.cs">
-      <DependentUpon>VOLGA_BASE.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\VOLGA_BASE.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>VOLGA_BASE.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\VOLGA_BASE.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>VOLGA_BASE.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\VOLGA_BASE.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>VOLGA_BASE.edmx</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\MainWindowViews\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -206,13 +170,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <EntityDeploy Include="Data\VOLGA_BASE.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>VOLGA_BASE.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Data\VOLGA_BASE.edmx.diagram">
-      <DependentUpon>VOLGA_BASE.edmx</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -227,21 +184,10 @@
     <Resource Include="Resources\close-button.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Data\VOLGA_BASE.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>VOLGA_BASE.Context.cs</LastGenOutput>
-      <DependentUpon>VOLGA_BASE.edmx</DependentUpon>
-    </Content>
-    <Content Include="Data\VOLGA_BASE.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>VOLGA_BASE.edmx</DependentUpon>
-      <LastGenOutput>VOLGA_BASE.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
