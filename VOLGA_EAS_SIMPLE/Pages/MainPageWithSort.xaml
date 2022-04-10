@@ -93,6 +93,34 @@
                           Checked="CheckNoNull_Checked"
                           Unchecked="CheckNoNull_Checked"
                           Content="Показывать проекты только с описанием"/>
+                <Button x:Name="ExportToWord"
+                        HorizontalAlignment="Left"
+                        Click="Delete_Click"
+                        Margin="0,5"
+                        Height="36"
+                        Width="250"
+                        Background="#FF006837"
+                        BorderBrush="{x:Null}"
+                        Foreground="{x:Null}">
+                    <Label HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource SmallWhiteLabel}"
+                               Content="ЭКСПОРТИРОВАТЬ В WORD"/>
+                </Button>
+                <Button x:Name="ExportToExcel"
+                        HorizontalAlignment="Left"
+                        Click="Delete_Click"
+                        Margin="0,5"
+                        Height="36"
+                        Width="250"
+                        Background="#FF006837"
+                        BorderBrush="{x:Null}"
+                        Foreground="{x:Null}">
+                    <Label HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource SmallWhiteLabel}"
+                               Content="ЭКСПОРТИРОВАТЬ В EXCEL"/>
+                </Button>
                 <Button x:Name="AddProject"
                         HorizontalAlignment="Left"
                         Click="Add_Click"
