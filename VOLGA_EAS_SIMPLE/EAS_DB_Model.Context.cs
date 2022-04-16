@@ -15,7 +15,7 @@ namespace VOLGA_EAS_SIMPLE
     
     public partial class VOLGA_EAS_DBEntities1 : DbContext
     {
-        public static VOLGA_EAS_DBEntities1 _context;
+        private static VOLGA_EAS_DBEntities1 _context;
 
         public VOLGA_EAS_DBEntities1()
             : base("name=VOLGA_EAS_DBEntities1")
@@ -26,10 +26,8 @@ namespace VOLGA_EAS_SIMPLE
         {
             if (_context == null)
                 _context = new VOLGA_EAS_DBEntities1();
-
             return _context;
         }
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();

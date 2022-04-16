@@ -4,12 +4,12 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище VOLGA_EAS_DBModel1" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище VOLGA_EAS_DBModel1" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="EMPLOYEES">
           <Key>
             <PropertyRef Name="EMPLOYEE_ID" />
           </Key>
-          <Property Name="EMPLOYEE_ID" Type="int" Nullable="false" />
+          <Property Name="EMPLOYEE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EMPLOYEE_FIRST_NAME" Type="nvarchar" MaxLength="50" />
           <Property Name="EMPLOYEE_SECOND_NAME" Type="nvarchar" MaxLength="50" />
           <Property Name="EMPLOYEE_PATRONYMIC" Type="nvarchar" MaxLength="50" />
@@ -22,7 +22,7 @@
           <Key>
             <PropertyRef Name="POSITION_ID" />
           </Key>
-          <Property Name="POSITION_ID" Type="int" Nullable="false" />
+          <Property Name="POSITION_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="POSITION_NAME" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="PROJECT_STAFF">
@@ -39,7 +39,7 @@
           <Key>
             <PropertyRef Name="PROJECT_ID" />
           </Key>
-          <Property Name="PROJECT_ID" Type="int" Nullable="false" />
+          <Property Name="PROJECT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PROJECT_NAME" Type="nvarchar" MaxLength="50" />
           <Property Name="PROJECT_DISCRIPTION" Type="nvarchar(max)" />
           <Property Name="PROJECT_IMAGE" Type="image" />
@@ -58,7 +58,7 @@
           <Key>
             <PropertyRef Name="USER_ID" />
           </Key>
-          <Property Name="USER_ID" Type="int" Nullable="false" />
+          <Property Name="USER_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="USER_EMAIL" Type="nvarchar" MaxLength="50" />
           <Property Name="USER_NAME" Type="nvarchar" MaxLength="50" />
           <Property Name="USER_FIRST_NAME" Type="nvarchar" MaxLength="50" />
@@ -141,8 +141,7 @@
             <End Role="USERS" EntitySet="USERS" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="VOLGA_EAS_DBModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -156,8 +155,8 @@
           <Property Name="EMPLOYEE_PATRONYMIC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="EMPLOYEE_PHONE_NUMBER" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="EMPLOYEE_POSITION" Type="Int32" />
-          <Property Name="EMPLOYEE_DATE_OF_BIRTH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="EMPLOYEE_DATE_OF_ADDITION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EMPLOYEE_DATE_OF_BIRTH" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="EMPLOYEE_DATE_OF_ADDITION" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="POSITION" Relationship="Self.FK_EMPLOYEES_POSITIONS" FromRole="EMPLOYEES" ToRole="POSITIONS" />
           <NavigationProperty Name="USERS" Relationship="Self.FK_USERS_EMPLOYEES" FromRole="EMPLOYEES" ToRole="USERS" />
         </EntityType>
@@ -176,8 +175,8 @@
           </Key>
           <Property Name="PROJECT" Type="Int32" Nullable="false" />
           <Property Name="USER" Type="Int32" Nullable="false" />
-          <Property Name="START_OF_WORK" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="END_OF_WORK" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="START_OF_WORK" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="END_OF_WORK" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="PROJECT1" Relationship="Self.FK_STAFF_ON_THE_PROJECTS_PROJECTS" FromRole="PROJECT_STAFF" ToRole="PROJECTS" />
           <NavigationProperty Name="USER1" Relationship="Self.FK_STAFF_ON_THE_PROJECTS_USERS" FromRole="PROJECT_STAFF" ToRole="USERS" />
         </EntityType>
@@ -205,7 +204,7 @@
           <Key>
             <PropertyRef Name="USER_ID" />
           </Key>
-          <Property Name="USER_ID" Type="Int32" Nullable="false" />
+          <Property Name="USER_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="USER_EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="USER_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="USER_FIRST_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -213,7 +212,7 @@
           <Property Name="USER_PATRONYMIC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="USER_DATE_OF_BIRTH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="USER_EMPLOYEE" Type="Int32" />
-          <Property Name="USER_DATE_OF_ADDITION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="USER_DATE_OF_ADDITION" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="USER_PASSWORD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="EMPLOYEE" Relationship="Self.FK_USERS_EMPLOYEES" FromRole="USERS" ToRole="EMPLOYEES" />
           <NavigationProperty Name="PROJECT_STAFF" Relationship="Self.FK_STAFF_ON_THE_PROJECTS_USERS" FromRole="USERS" ToRole="PROJECT_STAFF" />

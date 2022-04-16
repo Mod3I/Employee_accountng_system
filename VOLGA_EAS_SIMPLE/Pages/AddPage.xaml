@@ -13,60 +13,122 @@
 
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="19*"/>
+                <RowDefinition Height="31*"/>
                 <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Text="Название" Grid.Row="0"
-                   HorizontalAlignment="Right"
-                   VerticalAlignment="Center"/>
-            <TextBlock Text="Описание" Grid.Row="1"
-                       HorizontalAlignment="Right"
-                       VerticalAlignment="Center"/>
-            <TextBox Text="{Binding PROJECT_NAME}"
-                     Grid.Row="0" Grid.Column="1"
-                 Height="36"
-                 FontSize="24"
-                 Margin="10,0"/>
-            <TextBox Text="{Binding PROJECT_DISCRIPTION}"
-                     Grid.Row="1" Grid.Column="1"
-                 Height="36"
-                 FontSize="24"
-                 Margin="10,0"/>
-            <Button HorizontalAlignment="Center"
+            <StackPanel>
+                <Grid Margin="5,10,5,0">
+                    <Label Content="Название"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           />
+                    <TextBox Text="{Binding PROJECT_NAME}"
+                             HorizontalAlignment="Right"
+                             Height="36"
+                             Width="700"
+                             FontSize="24"
+                             />
+                </Grid>
+                <Grid Margin="5,10,5,0">
+                    <Label Content="Описание"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           />
+                    <TextBox Text="{Binding PROJECT_DISCRIPTION}"
+                             HorizontalAlignment="Right"
+                             Height="36"
+                             Width="700"
+                             FontSize="24"
+                             />
+                </Grid>
+                <Grid Margin="5,10,5,0">
+                    <Label Content="Сотрудник"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           />
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Right">
+                        <ComboBox Name="Employees"
+                                  HorizontalAlignment="Right"
+                                  DisplayMemberPath="USER_NAME"
+                                  Height="36"
+                                  Width="600"
+                                  FontSize="24"
+                             />
+                        <Button HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Click="AddStaff_Click"
+                            Height="36"
+                            Width="100"
+                            Background="#FF006837"
+                            BorderBrush="{x:Null}"
+                            Foreground="{x:Null}">
+                            <Label Style="{StaticResource SmallWhiteLabel}"
+                               Content="ДОБАВИТЬ"/>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+            <ListView Name="LVEmployees" BorderBrush="{x:Null}"
+                      Opacity="0.5"
+                      Margin="20,10"
+                      Grid.Row="1">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Vertical" ScrollViewer.HorizontalScrollBarVisibility="Hidden"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="{Binding USER_NAME}"
+                                   Style="{StaticResource NormalGrayLabelBlack}"/>
+                            <Button HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Click="DeleteStaff_Click"
+                            Height="36"
+                            Width="100"
+                            Background="#FF006837"
+                            BorderBrush="{x:Null}"
+                            Foreground="{x:Null}">
+                                <Label Style="{StaticResource SmallWhiteLabel}"
+                               Content="УДАЛИТЬ"/>
+                            </Button>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Grid.Row="2" Width="220">
+                <Button HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     Click="Save_Click"
                     Margin="5"
                 Height="36"
                 Width="100"
-                Grid.Column="1"
-                Grid.Row="2"
                 Background="#FF006837"
                 BorderBrush="{x:Null}"
                 Foreground="{x:Null}">
-                <Label HorizontalAlignment="Center"
+                    <Label HorizontalAlignment="Center"
                                VerticalAlignment="Center"
                                Style="{StaticResource SmallWhiteLabel}"
                                Content="СОХРАНИТЬ"/>
-            </Button>
-            <Button HorizontalAlignment="Right"
+                </Button>
+                <Button HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     Click="Cancel_Click"
                     Margin="5"
                 Height="36"
                 Width="100"
-                Grid.Column="1"
-                Grid.Row="2"
                 Background="#FF006837"
                 BorderBrush="{x:Null}"
                 Foreground="{x:Null}">
-                <Label Style="{StaticResource SmallWhiteLabel}"
+                    <Label Style="{StaticResource SmallWhiteLabel}"
                        Content="ОТМЕНА"/>
-            </Button>
+                </Button>
+            </StackPanel>
         </Grid>
     </Grid>
 </Page>

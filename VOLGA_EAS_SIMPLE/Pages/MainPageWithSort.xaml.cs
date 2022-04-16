@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Excel = Microsoft.Office.Interop.Excel;
+using Word = Microsoft.Office.Interop.Word;
 
 namespace VOLGA_EAS_SIMPLE.Pages
 {
@@ -20,6 +22,7 @@ namespace VOLGA_EAS_SIMPLE.Pages
     /// </summary>
     public partial class MainPageWithSort : Page
     {
+        private VOLGA_EAS_DBEntities1 _context = new VOLGA_EAS_DBEntities1();
         public MainPageWithSort()
         {
             InitializeComponent();
@@ -87,6 +90,54 @@ namespace VOLGA_EAS_SIMPLE.Pages
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
             Manager.MainFrame.Navigate(new AddPage((sender as Button).DataContext as PROJECT));
+        }
+
+        private void WordExport_Click(object sender, RoutedEventArgs e)
+        {
+            var allProjects = _context.PROJECTS.ToList().OrderBy(p => p.PROJECT_NAME).ToList();
+
+            var application = new Word.Application();
+
+            Word.Document document = application.Documents.Add();
+
+            foreach (var project in allProjects)
+            {
+                Word.Paragraph projectParagraph = document.Paragraphs.Add();
+                Word.Range projectRange = projectParagraph.Range;
+
+                projectRange.Text = project.PROJECT_NAME;
+                projectParagraph.set_Style("Заголовок");
+                projectRange.InsertParagraphAfter();
+            }
+        }
+
+        private void ExcelExport_Click(object sender, RoutedEventArgs e)
+        {
+            var allProjects = _context.PROJECTS.ToList().OrderBy(p => p.PROJECT_NAME).ToList();
+
+            var application = new Excel.Application();
+            application.SheetsInNewWorkbook = allProjects.Count();
+
+            int startRowIndex = 1;
+
+            Excel.Workbook workbook = application.Workbooks.Add(Type.Missing);
+
+            for (int i = 0; i < allProjects.Count(); i++)
+            {
+                Excel.Worksheet worksheet = application.Worksheets.Item[i + 1];
+                worksheet.Name = allProjects[i].PROJECT_NAME;
+
+                worksheet.Cells[1][startRowIndex] = "Название проекта";
+                worksheet.Cells[2][startRowIndex] = "Описание проекта";
+
+                startRowIndex++;
+
+                worksheet.Cells[1][startRowIndex] = allProjects[i].PROJECT_NAME;
+                worksheet.Cells[2][startRowIndex] = allProjects[i].PROJECT_DISCRIPTION;
+
+                startRowIndex = 1;
+            }
+            application.Visible = true;
         }
 
         //private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)

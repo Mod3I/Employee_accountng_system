@@ -22,74 +22,55 @@ namespace VOLGA_EAS_SIMPLE.Pages
     /// </summary>
     public partial class RegistrationPage : Page
     {
-        //private USERS _currentUser = new USERS();
 
         public RegistrationPage()
         {
             InitializeComponent();
-            //this.DataContext = new VOLGA_EAS_DBEntities();
         }
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            //private string ConfPass = ConffPasswordr.Text;
-            //SqlConnection connection1 = new SqlConnection("Data Source=DESKTOP-5CU2HHD;Initial Catalog=VOLGA_EAS_DB;Integrated Security=True");
-            //SqlCommand comand1 = new SqlCommand();
-            //SqlDataAdapter adaptor1 = new SqlDataAdapter();
-            //DataSet dataset1 = new DataSet();
-            //DataTable dt = new DataTable();
+            var mail = Emailr.Text;
+            var login = Loginr.Text;
+            var password = Passwordr.Text;
+            var conffpassword = ConffPasswordr.Text;
+            USER _confirmedUser = new USER();
+            USER uSER = new USER();
+            _confirmedUser = VOLGA_EAS_DBEntities1.GetContext().USERS.FirstOrDefault(p => p.USER_NAME == login);
 
-            //comand1.CommandText = @"SELECT ""USER_NAME"", ""USER_PASSWORD"" FROM ""USERS"" WHERE ""USER_NAME""='" + Loging.Text +
-            //@"'AND ""USER_PASSWORD""='" + Passwordg.Text + "'";
+            if (_confirmedUser == null)
+            {
+                if (password == conffpassword)
+                {
+                    uSER.USER_EMAIL = mail;
+                    uSER.USER_NAME = login;
+                    uSER.USER_PASSWORD = password;
+                    VOLGA_EAS_DBEntities1.GetContext().USERS.Add(uSER);
 
-
-            //comand1.Connection = connection1;
-
-            //adaptor1.SelectCommand = comand1;
-            //adaptor1.Fill(dataset1, "0");
-            //adaptor1.Fill(dt);
-            //int count1 = dataset1.Tables[0].Rows.Count;
-            //if (count1 > 0)
-            //{
-            //    connection1.Close();
-            //    Manager.MainFrame.Navigate(new MainPage());
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Не правильный логин или пароль");
-            //    Loging.Clear();
-            //    Passwordg.Clear();
-            //}
-            //StringBuilder errors = new StringBuilder();
-
-            //if (string.IsNullOrWhiteSpace(_currentUser.USER_EMAIL))
-            //    errors.AppendLine("Укажите электронную почту");
-
-            //if (string.IsNullOrWhiteSpace(_currentUser.USER_NAME))
-            //    errors.AppendLine("Укажите никнейм");
-
-            //if (string.IsNullOrWhiteSpace(_currentUser.USER_PASSWORD))
-            //    errors.AppendLine("Укажите пароль");
-
-            //if (errors.Length > 0)
-            //{
-            //    MessageBox.Show(errors.ToString());
-            //    return;
-            //}
-
-            //if (_currentUser.USER_ID == 0 && _currentUser.USER_PASSWORD == ConfPass)
-            //    VOLGA_EAS_DBEntities.GetContext().USERS.Add(_currentUser);
-
-            //try
-            //{
-            //    VOLGA_EAS_DBEntities.GetContext().SaveChanges();
-            //    MessageBox.Show("Информация сохранена");
-            //    Manager.MainFrame.GoBack();
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message.ToString());
-            //}
+                    try
+                    {
+                        VOLGA_EAS_DBEntities1.GetContext().SaveChanges();
+                        MessageBox.Show("Новый пользователь зарегистрирован");
+                        Manager.MainFrame.Navigate(new LoginPage());
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                    }
+                }    
+                else
+                {
+                    MessageBox.Show("Пароли не совпадают");
+                    ConffPasswordr.Clear();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Пользователь с таким логином существует");
+                Loginr.Clear();
+                Passwordr.Clear();
+                ConffPasswordr.Clear();
+            }
         }
 
         private void TextBox_PreviewExecuted(object sender, ExecutedRoutedEventArgs e)
