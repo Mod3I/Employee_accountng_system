@@ -16,9 +16,9 @@ namespace VOLGA_EAS_SIMPLE.Pages
     {
         private PROJECT _currentProject = new PROJECT();
 
-        private List<USER> gtij = new List<USER>();
+        private List<USER> _staffProject = new List<USER>();
 
-        private List<USER> gtij1 = new List<USER>();
+        private List<USER> _staffForAdd = new List<USER>();
 
         private PROJECT_STAFF _currentStaff = new PROJECT_STAFF();
 
@@ -43,41 +43,42 @@ namespace VOLGA_EAS_SIMPLE.Pages
         private void UpdateEmployees()
         {
             var currentStaff = new PROJECT_STAFF();
-            var us = VOLGA_EAS_DBEntities1.GetContext().USERS.ToList();
+            var allUsers = VOLGA_EAS_DBEntities1.GetContext().USERS.ToList();
+            _staffForAdd.AddRange(allUsers);
             var us1 = VOLGA_EAS_DBEntities1.GetContext().USERS.ToList();
             var staff = VOLGA_EAS_DBEntities1.GetContext().PROJECT_STAFF.Where(p => p.PROJECT == _currentProject.PROJECT_ID).ToList();
 
-            //List<USER> gtij = new List<USER>();
-            gtij1.AddRange(us);
-
-            foreach (var vf in us)
+            foreach (var thisUser in allUsers)
             {
                 
-                foreach (var frf in staff)
+                foreach (var thisStaff in staff)
                 {
 
-                    if (vf.USER_ID.Equals(frf.USER))
+                    if (thisUser.USER_ID.Equals(thisStaff.USER))
                     {
-                        //currentStaff.PROJECT = _currentProject.PROJECT_ID;
-                        //currentStaff.USER = vf.USER_ID;
-                        //VOLGA_EAS_DBEntities1.GetContext().PROJECT_STAFF.Add(currentStaff);
-                        gtij.Add(vf);
-                        us1.Remove(vf);
+                        _staffProject.Add(thisUser);
+                        _staffForAdd.Remove(thisUser);
                     }
                     
                 }
             }
 
-            gtij1.AddRange(us1);
-            Employees.ItemsSource = us1.ToList();
-            LVEmployees.ItemsSource = gtij.ToList();
+            Employees.ItemsSource = _staffForAdd.ToList();
+            LVEmployees.ItemsSource = _staffProject.ToList();
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
             StringBuilder errors = new StringBuilder();
 
-            var endStaff = LVEmployees.Items[0].ToString();
+            try
+            {
+                var endStaff = LVEmployees.Items[0].ToString();
+            }
+            catch (Exception ex)
+            {
+
+            }
 
             if (string.IsNullOrWhiteSpace(_currentProject.PROJECT_NAME))
                 errors.AppendLine("Укажите название проекта");
@@ -94,8 +95,18 @@ namespace VOLGA_EAS_SIMPLE.Pages
             if (_currentProject.PROJECT_ID == 0)
             {
                 VOLGA_EAS_DBEntities1.GetContext().PROJECTS.Add(_currentProject);
-                //VOLGA_EAS_DBEntities1.GetContext().PROJECT_STAFF.Add();
+            }
 
+            PROJECT_STAFF newCurrentProjectStaff = new PROJECT_STAFF();
+            newCurrentProjectStaff.PROJECT = _currentProject.PROJECT_ID;
+
+            foreach (USER currentStaff in _staffProject)
+            {
+                if (!VOLGA_EAS_DBEntities1.GetContext().PROJECT_STAFF.Where(p => p.PROJECT == _currentProject.PROJECT_ID).ToList().Equals(currentStaff))
+                {
+                    newCurrentProjectStaff.USER = currentStaff.USER_ID;
+                    VOLGA_EAS_DBEntities1.GetContext().PROJECT_STAFF.Add(newCurrentProjectStaff);
+                }
             }
 
             try
@@ -118,11 +129,18 @@ namespace VOLGA_EAS_SIMPLE.Pages
 
         private void AddStaff_Click(object sender, RoutedEventArgs e)
         {
-            _selectedUser = (USER)Employees.SelectedItem;
-            _currentStaff.PROJECT = _currentProject.PROJECT_ID;
-            _currentStaff.USER = _selectedUser.USER_ID;
-            VOLGA_EAS_DBEntities1.GetContext().PROJECT_STAFF.Add(_currentStaff);
-            UpdateEmployees();
+            if ((USER)Employees.SelectedItem != null)
+            {
+                _staffProject.Add((USER)Employees.SelectedItem);
+                LVEmployees.ItemsSource = _staffProject;
+
+                _staffForAdd.Remove((USER)Employees.SelectedItem);
+                Employees.ItemsSource = _staffForAdd;
+            }
+            else
+            {
+                MessageBox.Show("Выберите сотрудника");
+            }
         }
 
         private void DeleteStaff_Click(object sender, RoutedEventArgs e)
