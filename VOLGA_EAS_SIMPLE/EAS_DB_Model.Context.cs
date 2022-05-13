@@ -28,12 +28,12 @@ namespace VOLGA_EAS_SIMPLE
                 _context = new VOLGA_EAS_DBEntities1();
             return _context;
         }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<EMPLOYEE> EMPLOYEES { get; set; }
         public virtual DbSet<POSITION> POSITIONS { get; set; }
         public virtual DbSet<PROJECT_STAFF> PROJECT_STAFF { get; set; }
         public virtual DbSet<PROJECT> PROJECTS { get; set; }

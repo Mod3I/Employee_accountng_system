@@ -32,12 +32,47 @@ namespace VOLGA_EAS_SIMPLE.Pages
         {
             InitializeComponent();
 
+
             if (selectedProject != null)
                 _currentProject = selectedProject;
 
             UpdateEmployees();
 
             DataContext = _currentProject;
+
+            if (App.CurrentUser.POSITION.POSITION_ID == 2 || App.CurrentUser.POSITION.POSITION_ID == 3)
+            {
+                ProjectName.IsReadOnly = false;
+                ProjectDiscription.IsReadOnly = false;
+                Label3.Visibility = Visibility.Visible;
+                Employees.Visibility = Visibility.Visible;
+                AddStaff.Visibility = Visibility.Visible;
+                SaveProject.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                ProjectName.IsReadOnly = true;
+                ProjectDiscription.IsReadOnly = true;
+                Label3.Visibility = Visibility.Collapsed;
+                Employees.Visibility = Visibility.Collapsed;
+                AddStaff.Visibility = Visibility.Collapsed;
+                SaveProject.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        public string ControlsVisibility
+        {
+            get
+            {
+                if (App.CurrentUser.POSITION.POSITION_ID == 2 || App.CurrentUser.POSITION.POSITION_ID == 3)
+                {
+                    return "Visible";
+                }
+                else
+                {
+                    return "Collapsed";
+                }
+            }
         }
 
         private void UpdateEmployees()
@@ -143,7 +178,7 @@ namespace VOLGA_EAS_SIMPLE.Pages
             }
         }
 
-        private void DeleteStaff_Click(object sender, RoutedEventArgs e)
+        private void RemoveStaff_Click(object sender, RoutedEventArgs e)
         {
 
         }

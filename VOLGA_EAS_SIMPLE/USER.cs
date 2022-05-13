@@ -21,17 +21,17 @@ namespace VOLGA_EAS_SIMPLE
         }
     
         public int USER_ID { get; set; }
+        public Nullable<int> USER_POSITION { get; set; }
         public string USER_EMAIL { get; set; }
+        public string USER_PASSWORD { get; set; }
         public string USER_NAME { get; set; }
         public string USER_FIRST_NAME { get; set; }
         public string USER_SECOND_NAME { get; set; }
         public string USER_PATRONYMIC { get; set; }
         public string USER_DATE_OF_BIRTH { get; set; }
-        public Nullable<int> USER_EMPLOYEE { get; set; }
         public string USER_DATE_OF_ADDITION { get; set; }
-        public string USER_PASSWORD { get; set; }
     
-        public virtual EMPLOYEE EMPLOYEE { get; set; }
+        public virtual POSITION POSITION { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PROJECT_STAFF> PROJECT_STAFF { get; set; }
     }

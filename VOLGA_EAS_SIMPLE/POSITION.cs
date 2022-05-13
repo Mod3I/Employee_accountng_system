@@ -17,13 +17,13 @@ namespace VOLGA_EAS_SIMPLE
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public POSITION()
         {
-            this.EMPLOYEES = new HashSet<EMPLOYEE>();
+            this.USERS = new HashSet<USER>();
         }
     
         public int POSITION_ID { get; set; }
         public string POSITION_NAME { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EMPLOYEE> EMPLOYEES { get; set; }
+        public virtual ICollection<USER> USERS { get; set; }
     }
 }

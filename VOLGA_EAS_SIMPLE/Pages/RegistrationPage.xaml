@@ -10,24 +10,26 @@
 
     <Grid>
         <Grid>
-            <Image Source="/Resources/F.jpg" 
+            <Image Name="Image1"
+                   Source="/Resources/F.jpg" 
                    Stretch="UniformToFill"/>
 
             <Grid Height="350"
                   Width="320">
 
-                <StackPanel VerticalAlignment="Center"
+                <StackPanel Name="WhiteSubstrate" VerticalAlignment="Center"
                             HorizontalAlignment="Center"
                             Background="White"
                             Orientation="Vertical"
                             Height="350"
                             Width="320">
 
-                    <Label Content="Регистрация"
+                    <Label Name="Label1"
+                           Content="Регистрация"
                            Style="{StaticResource NormalGrayLabelBlack}"
                            Margin="30,10"/>
 
-                    <Label Content="E-mail"
+                    <Label Name="Label2" Content="E-mail"
                            Style="{StaticResource GrayLabelBlack}"
                            Margin="30,5"/>
 
@@ -37,7 +39,8 @@
                              Margin="30,0,30,12"
                              FontSize="20"></TextBox>
 
-                    <Label Content="Никнейм"
+                    <Label Name="Label3"
+                           Content="Логин"
                            Style="{StaticResource GrayLabelBlack}"
                            Margin="30,5"/>
 
@@ -47,7 +50,7 @@
                              Margin="30,0,30,12"
                              FontSize="20"></TextBox>
 
-                    <Label Content="Пароль"
+                    <Label Name="Label4" Content="Пароль"
                            Style="{StaticResource GrayLabelBlack}"
                            Margin="30,5"/>
 
@@ -61,7 +64,7 @@
                              Margin="30,0,30,12"
                              FontSize="20"/>
 
-                    <Label Content="Подтвердите пароль"
+                    <Label Name="Label5" Content="Подтвердите пароль"
                            Style="{StaticResource GrayLabelBlack}"
                            Margin="30,5"/>
 
@@ -80,23 +83,27 @@
                             Click="Login_Click"
                             Height="36"
                             Margin="30,5,30,12">
-                        <Label HorizontalAlignment="Center"
+                        <Label Name="Label6"
+                               HorizontalAlignment="Center"
                                VerticalAlignment="Center"
                                Style="{StaticResource SmallWhiteLabel}"
-                               Content="ПРОДОЛЖИТЬ"/>
+                               Content="ЗАВЕРШИТЬ"/>
                     </Button>
                     
                 </StackPanel>
-                <Button BorderBrush="{x:Null}"
+                <Button Name="CloseButton"
+                        BorderBrush="{x:Null}"
                         Foreground="{x:Null}"
+                        Background="{x:Null}"
                         VerticalAlignment="Top"
                         HorizontalAlignment="Right"
                         Click="Back_Click"
                         Height="36"
-                        Width="36" Background="{x:Null}">
-                    <Label VerticalAlignment="Top"
-                       HorizontalAlignment="Right"
-                       Style="{StaticResource CloseButton}"/>
+                        Width="36">
+                    <Label Name="Label7"
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Right"
+                           Style="{StaticResource CloseButton}"/>
                 </Button>
             </Grid>
         </Grid>

@@ -5,19 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="Хранилище VOLGA_EAS_DBModel1" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="EMPLOYEES">
-          <Key>
-            <PropertyRef Name="EMPLOYEE_ID" />
-          </Key>
-          <Property Name="EMPLOYEE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="EMPLOYEE_FIRST_NAME" Type="nvarchar" MaxLength="50" />
-          <Property Name="EMPLOYEE_SECOND_NAME" Type="nvarchar" MaxLength="50" />
-          <Property Name="EMPLOYEE_PATRONYMIC" Type="nvarchar" MaxLength="50" />
-          <Property Name="EMPLOYEE_PHONE_NUMBER" Type="nvarchar" MaxLength="50" />
-          <Property Name="EMPLOYEE_POSITION" Type="int" />
-          <Property Name="EMPLOYEE_DATE_OF_BIRTH" Type="nvarchar" MaxLength="50" />
-          <Property Name="EMPLOYEE_DATE_OF_ADDITION" Type="nvarchar" MaxLength="50" />
-        </EntityType>
         <EntityType Name="POSITIONS">
           <Key>
             <PropertyRef Name="POSITION_ID" />
@@ -59,28 +46,16 @@
             <PropertyRef Name="USER_ID" />
           </Key>
           <Property Name="USER_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USER_POSITION" Type="int" />
           <Property Name="USER_EMAIL" Type="nvarchar" MaxLength="50" />
+          <Property Name="USER_PASSWORD" Type="nvarchar" MaxLength="50" />
           <Property Name="USER_NAME" Type="nvarchar" MaxLength="50" />
           <Property Name="USER_FIRST_NAME" Type="nvarchar" MaxLength="50" />
           <Property Name="USER_SECOND_NAME" Type="nvarchar" MaxLength="50" />
           <Property Name="USER_PATRONYMIC" Type="nvarchar" MaxLength="50" />
           <Property Name="USER_DATE_OF_BIRTH" Type="nvarchar" MaxLength="50" />
-          <Property Name="USER_EMPLOYEE" Type="int" />
           <Property Name="USER_DATE_OF_ADDITION" Type="nvarchar" MaxLength="50" />
-          <Property Name="USER_PASSWORD" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <Association Name="FK_EMPLOYEES_POSITIONS">
-          <End Role="POSITIONS" Type="Self.POSITIONS" Multiplicity="0..1" />
-          <End Role="EMPLOYEES" Type="Self.EMPLOYEES" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="POSITIONS">
-              <PropertyRef Name="POSITION_ID" />
-            </Principal>
-            <Dependent Role="EMPLOYEES">
-              <PropertyRef Name="EMPLOYEE_POSITION" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_STAFF_ON_THE_PROJECTS_PROJECTS">
           <End Role="PROJECTS" Type="Self.PROJECTS" Multiplicity="1" />
           <End Role="PROJECT_STAFF" Type="Self.PROJECT_STAFF" Multiplicity="*" />
@@ -105,29 +80,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_USERS_EMPLOYEES">
-          <End Role="EMPLOYEES" Type="Self.EMPLOYEES" Multiplicity="0..1" />
+        <Association Name="FK_USERS_POSITIONS">
+          <End Role="POSITIONS" Type="Self.POSITIONS" Multiplicity="0..1" />
           <End Role="USERS" Type="Self.USERS" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="EMPLOYEES">
-              <PropertyRef Name="EMPLOYEE_ID" />
+            <Principal Role="POSITIONS">
+              <PropertyRef Name="POSITION_ID" />
             </Principal>
             <Dependent Role="USERS">
-              <PropertyRef Name="USER_EMPLOYEE" />
+              <PropertyRef Name="USER_POSITION" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Хранилище VOLGA_EAS_DBModel1Container">
-          <EntitySet Name="EMPLOYEES" EntityType="Self.EMPLOYEES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="POSITIONS" EntityType="Self.POSITIONS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PROJECT_STAFF" EntityType="Self.PROJECT_STAFF" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PROJECTS" EntityType="Self.PROJECTS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_EMPLOYEES_POSITIONS" Association="Self.FK_EMPLOYEES_POSITIONS">
-            <End Role="POSITIONS" EntitySet="POSITIONS" />
-            <End Role="EMPLOYEES" EntitySet="EMPLOYEES" />
-          </AssociationSet>
           <AssociationSet Name="FK_STAFF_ON_THE_PROJECTS_PROJECTS" Association="Self.FK_STAFF_ON_THE_PROJECTS_PROJECTS">
             <End Role="PROJECTS" EntitySet="PROJECTS" />
             <End Role="PROJECT_STAFF" EntitySet="PROJECT_STAFF" />
@@ -136,8 +106,8 @@
             <End Role="USERS" EntitySet="USERS" />
             <End Role="PROJECT_STAFF" EntitySet="PROJECT_STAFF" />
           </AssociationSet>
-          <AssociationSet Name="FK_USERS_EMPLOYEES" Association="Self.FK_USERS_EMPLOYEES">
-            <End Role="EMPLOYEES" EntitySet="EMPLOYEES" />
+          <AssociationSet Name="FK_USERS_POSITIONS" Association="Self.FK_USERS_POSITIONS">
+            <End Role="POSITIONS" EntitySet="POSITIONS" />
             <End Role="USERS" EntitySet="USERS" />
           </AssociationSet>
         </EntityContainer>
@@ -145,28 +115,32 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="VOLGA_EAS_DBModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="EMPLOYEE">
-          <Key>
-            <PropertyRef Name="EMPLOYEE_ID" />
-          </Key>
-          <Property Name="EMPLOYEE_ID" Type="Int32" Nullable="false" />
-          <Property Name="EMPLOYEE_FIRST_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="EMPLOYEE_SECOND_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="EMPLOYEE_PATRONYMIC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="EMPLOYEE_PHONE_NUMBER" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="EMPLOYEE_POSITION" Type="Int32" />
-          <Property Name="EMPLOYEE_DATE_OF_BIRTH" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="EMPLOYEE_DATE_OF_ADDITION" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="POSITION" Relationship="Self.FK_EMPLOYEES_POSITIONS" FromRole="EMPLOYEES" ToRole="POSITIONS" />
-          <NavigationProperty Name="USERS" Relationship="Self.FK_USERS_EMPLOYEES" FromRole="EMPLOYEES" ToRole="USERS" />
-        </EntityType>
+        <EntityContainer Name="VOLGA_EAS_DBEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="POSITIONS" EntityType="VOLGA_EAS_DBModel1.POSITION" />
+          <EntitySet Name="PROJECT_STAFF" EntityType="VOLGA_EAS_DBModel1.PROJECT_STAFF" />
+          <EntitySet Name="PROJECTS" EntityType="VOLGA_EAS_DBModel1.PROJECT" />
+          <EntitySet Name="sysdiagrams" EntityType="VOLGA_EAS_DBModel1.sysdiagram" />
+          <EntitySet Name="USERS" EntityType="VOLGA_EAS_DBModel1.USER" />
+          <AssociationSet Name="FK_USERS_POSITIONS" Association="VOLGA_EAS_DBModel1.FK_USERS_POSITIONS">
+            <End Role="POSITION" EntitySet="POSITIONS" />
+            <End Role="USER" EntitySet="USERS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STAFF_ON_THE_PROJECTS_PROJECTS" Association="VOLGA_EAS_DBModel1.FK_STAFF_ON_THE_PROJECTS_PROJECTS">
+            <End Role="PROJECT" EntitySet="PROJECTS" />
+            <End Role="PROJECT_STAFF" EntitySet="PROJECT_STAFF" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STAFF_ON_THE_PROJECTS_USERS" Association="VOLGA_EAS_DBModel1.FK_STAFF_ON_THE_PROJECTS_USERS">
+            <End Role="USER" EntitySet="USERS" />
+            <End Role="PROJECT_STAFF" EntitySet="PROJECT_STAFF" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="POSITION">
           <Key>
             <PropertyRef Name="POSITION_ID" />
           </Key>
-          <Property Name="POSITION_ID" Type="Int32" Nullable="false" />
+          <Property Name="POSITION_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="POSITION_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="EMPLOYEES" Relationship="Self.FK_EMPLOYEES_POSITIONS" FromRole="POSITIONS" ToRole="EMPLOYEES" />
+          <NavigationProperty Name="USERS" Relationship="VOLGA_EAS_DBModel1.FK_USERS_POSITIONS" FromRole="POSITION" ToRole="USER" />
         </EntityType>
         <EntityType Name="PROJECT_STAFF">
           <Key>
@@ -175,26 +149,26 @@
           </Key>
           <Property Name="PROJECT" Type="Int32" Nullable="false" />
           <Property Name="USER" Type="Int32" Nullable="false" />
-          <Property Name="START_OF_WORK" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="END_OF_WORK" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="PROJECT1" Relationship="Self.FK_STAFF_ON_THE_PROJECTS_PROJECTS" FromRole="PROJECT_STAFF" ToRole="PROJECTS" />
-          <NavigationProperty Name="USER1" Relationship="Self.FK_STAFF_ON_THE_PROJECTS_USERS" FromRole="PROJECT_STAFF" ToRole="USERS" />
+          <Property Name="START_OF_WORK" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="END_OF_WORK" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PROJECT1" Relationship="VOLGA_EAS_DBModel1.FK_STAFF_ON_THE_PROJECTS_PROJECTS" FromRole="PROJECT_STAFF" ToRole="PROJECT" />
+          <NavigationProperty Name="USER1" Relationship="VOLGA_EAS_DBModel1.FK_STAFF_ON_THE_PROJECTS_USERS" FromRole="PROJECT_STAFF" ToRole="USER" />
         </EntityType>
         <EntityType Name="PROJECT">
           <Key>
             <PropertyRef Name="PROJECT_ID" />
           </Key>
-          <Property Name="PROJECT_ID" Type="Int32" Nullable="false" />
+          <Property Name="PROJECT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PROJECT_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PROJECT_DISCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="PROJECT_IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <NavigationProperty Name="PROJECT_STAFF" Relationship="Self.FK_STAFF_ON_THE_PROJECTS_PROJECTS" FromRole="PROJECTS" ToRole="PROJECT_STAFF" />
+          <NavigationProperty Name="PROJECT_STAFF" Relationship="VOLGA_EAS_DBModel1.FK_STAFF_ON_THE_PROJECTS_PROJECTS" FromRole="PROJECT" ToRole="PROJECT_STAFF" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="principal_id" Type="Int32" Nullable="false" />
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
@@ -205,47 +179,35 @@
             <PropertyRef Name="USER_ID" />
           </Key>
           <Property Name="USER_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USER_POSITION" Type="Int32" />
           <Property Name="USER_EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="USER_PASSWORD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="USER_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="USER_FIRST_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="USER_SECOND_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="USER_PATRONYMIC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="USER_DATE_OF_BIRTH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="USER_EMPLOYEE" Type="Int32" />
-          <Property Name="USER_DATE_OF_ADDITION" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="USER_PASSWORD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="EMPLOYEE" Relationship="Self.FK_USERS_EMPLOYEES" FromRole="USERS" ToRole="EMPLOYEES" />
-          <NavigationProperty Name="PROJECT_STAFF" Relationship="Self.FK_STAFF_ON_THE_PROJECTS_USERS" FromRole="USERS" ToRole="PROJECT_STAFF" />
+          <Property Name="USER_DATE_OF_ADDITION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="POSITION" Relationship="VOLGA_EAS_DBModel1.FK_USERS_POSITIONS" FromRole="USER" ToRole="POSITION" />
+          <NavigationProperty Name="PROJECT_STAFF" Relationship="VOLGA_EAS_DBModel1.FK_STAFF_ON_THE_PROJECTS_USERS" FromRole="USER" ToRole="PROJECT_STAFF" />
         </EntityType>
-        <Association Name="FK_EMPLOYEES_POSITIONS">
-          <End Role="POSITIONS" Type="Self.POSITION" Multiplicity="0..1" />
-          <End Role="EMPLOYEES" Type="Self.EMPLOYEE" Multiplicity="*" />
+        <Association Name="FK_USERS_POSITIONS">
+          <End Type="VOLGA_EAS_DBModel1.POSITION" Role="POSITION" Multiplicity="0..1" />
+          <End Type="VOLGA_EAS_DBModel1.USER" Role="USER" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="POSITIONS">
+            <Principal Role="POSITION">
               <PropertyRef Name="POSITION_ID" />
             </Principal>
-            <Dependent Role="EMPLOYEES">
-              <PropertyRef Name="EMPLOYEE_POSITION" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_USERS_EMPLOYEES">
-          <End Role="EMPLOYEES" Type="Self.EMPLOYEE" Multiplicity="0..1" />
-          <End Role="USERS" Type="Self.USER" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EMPLOYEES">
-              <PropertyRef Name="EMPLOYEE_ID" />
-            </Principal>
-            <Dependent Role="USERS">
-              <PropertyRef Name="USER_EMPLOYEE" />
+            <Dependent Role="USER">
+              <PropertyRef Name="USER_POSITION" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_STAFF_ON_THE_PROJECTS_PROJECTS">
-          <End Role="PROJECTS" Type="Self.PROJECT" Multiplicity="1" />
-          <End Role="PROJECT_STAFF" Type="Self.PROJECT_STAFF" Multiplicity="*" />
+          <End Type="VOLGA_EAS_DBModel1.PROJECT" Role="PROJECT" Multiplicity="1" />
+          <End Type="VOLGA_EAS_DBModel1.PROJECT_STAFF" Role="PROJECT_STAFF" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="PROJECTS">
+            <Principal Role="PROJECT">
               <PropertyRef Name="PROJECT_ID" />
             </Principal>
             <Dependent Role="PROJECT_STAFF">
@@ -254,10 +216,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_STAFF_ON_THE_PROJECTS_USERS">
-          <End Role="USERS" Type="Self.USER" Multiplicity="1" />
-          <End Role="PROJECT_STAFF" Type="Self.PROJECT_STAFF" Multiplicity="*" />
+          <End Type="VOLGA_EAS_DBModel1.USER" Role="USER" Multiplicity="1" />
+          <End Type="VOLGA_EAS_DBModel1.PROJECT_STAFF" Role="PROJECT_STAFF" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="USERS">
+            <Principal Role="USER">
               <PropertyRef Name="USER_ID" />
             </Principal>
             <Dependent Role="PROJECT_STAFF">
@@ -265,102 +227,64 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="VOLGA_EAS_DBEntities1" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="EMPLOYEES" EntityType="Self.EMPLOYEE" />
-          <EntitySet Name="POSITIONS" EntityType="Self.POSITION" />
-          <EntitySet Name="PROJECT_STAFF" EntityType="Self.PROJECT_STAFF" />
-          <EntitySet Name="PROJECTS" EntityType="Self.PROJECT" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <EntitySet Name="USERS" EntityType="Self.USER" />
-          <AssociationSet Name="FK_EMPLOYEES_POSITIONS" Association="Self.FK_EMPLOYEES_POSITIONS">
-            <End Role="POSITIONS" EntitySet="POSITIONS" />
-            <End Role="EMPLOYEES" EntitySet="EMPLOYEES" />
-          </AssociationSet>
-          <AssociationSet Name="FK_USERS_EMPLOYEES" Association="Self.FK_USERS_EMPLOYEES">
-            <End Role="EMPLOYEES" EntitySet="EMPLOYEES" />
-            <End Role="USERS" EntitySet="USERS" />
-          </AssociationSet>
-          <AssociationSet Name="FK_STAFF_ON_THE_PROJECTS_PROJECTS" Association="Self.FK_STAFF_ON_THE_PROJECTS_PROJECTS">
-            <End Role="PROJECTS" EntitySet="PROJECTS" />
-            <End Role="PROJECT_STAFF" EntitySet="PROJECT_STAFF" />
-          </AssociationSet>
-          <AssociationSet Name="FK_STAFF_ON_THE_PROJECTS_USERS" Association="Self.FK_STAFF_ON_THE_PROJECTS_USERS">
-            <End Role="USERS" EntitySet="USERS" />
-            <End Role="PROJECT_STAFF" EntitySet="PROJECT_STAFF" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище VOLGA_EAS_DBModel1Container" CdmEntityContainer="VOLGA_EAS_DBEntities1">
-          <EntitySetMapping Name="EMPLOYEES">
-            <EntityTypeMapping TypeName="VOLGA_EAS_DBModel1.EMPLOYEE">
-              <MappingFragment StoreEntitySet="EMPLOYEES">
-                <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
-                <ScalarProperty Name="EMPLOYEE_FIRST_NAME" ColumnName="EMPLOYEE_FIRST_NAME" />
-                <ScalarProperty Name="EMPLOYEE_SECOND_NAME" ColumnName="EMPLOYEE_SECOND_NAME" />
-                <ScalarProperty Name="EMPLOYEE_PATRONYMIC" ColumnName="EMPLOYEE_PATRONYMIC" />
-                <ScalarProperty Name="EMPLOYEE_PHONE_NUMBER" ColumnName="EMPLOYEE_PHONE_NUMBER" />
-                <ScalarProperty Name="EMPLOYEE_POSITION" ColumnName="EMPLOYEE_POSITION" />
-                <ScalarProperty Name="EMPLOYEE_DATE_OF_BIRTH" ColumnName="EMPLOYEE_DATE_OF_BIRTH" />
-                <ScalarProperty Name="EMPLOYEE_DATE_OF_ADDITION" ColumnName="EMPLOYEE_DATE_OF_ADDITION" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="POSITIONS">
             <EntityTypeMapping TypeName="VOLGA_EAS_DBModel1.POSITION">
               <MappingFragment StoreEntitySet="POSITIONS">
-                <ScalarProperty Name="POSITION_ID" ColumnName="POSITION_ID" />
                 <ScalarProperty Name="POSITION_NAME" ColumnName="POSITION_NAME" />
+                <ScalarProperty Name="POSITION_ID" ColumnName="POSITION_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PROJECT_STAFF">
             <EntityTypeMapping TypeName="VOLGA_EAS_DBModel1.PROJECT_STAFF">
               <MappingFragment StoreEntitySet="PROJECT_STAFF">
-                <ScalarProperty Name="PROJECT" ColumnName="PROJECT" />
-                <ScalarProperty Name="USER" ColumnName="USER" />
-                <ScalarProperty Name="START_OF_WORK" ColumnName="START_OF_WORK" />
                 <ScalarProperty Name="END_OF_WORK" ColumnName="END_OF_WORK" />
+                <ScalarProperty Name="START_OF_WORK" ColumnName="START_OF_WORK" />
+                <ScalarProperty Name="USER" ColumnName="USER" />
+                <ScalarProperty Name="PROJECT" ColumnName="PROJECT" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PROJECTS">
             <EntityTypeMapping TypeName="VOLGA_EAS_DBModel1.PROJECT">
               <MappingFragment StoreEntitySet="PROJECTS">
-                <ScalarProperty Name="PROJECT_ID" ColumnName="PROJECT_ID" />
-                <ScalarProperty Name="PROJECT_NAME" ColumnName="PROJECT_NAME" />
-                <ScalarProperty Name="PROJECT_DISCRIPTION" ColumnName="PROJECT_DISCRIPTION" />
                 <ScalarProperty Name="PROJECT_IMAGE" ColumnName="PROJECT_IMAGE" />
+                <ScalarProperty Name="PROJECT_DISCRIPTION" ColumnName="PROJECT_DISCRIPTION" />
+                <ScalarProperty Name="PROJECT_NAME" ColumnName="PROJECT_NAME" />
+                <ScalarProperty Name="PROJECT_ID" ColumnName="PROJECT_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="VOLGA_EAS_DBModel1.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="USERS">
             <EntityTypeMapping TypeName="VOLGA_EAS_DBModel1.USER">
               <MappingFragment StoreEntitySet="USERS">
-                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
-                <ScalarProperty Name="USER_EMAIL" ColumnName="USER_EMAIL" />
-                <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
-                <ScalarProperty Name="USER_FIRST_NAME" ColumnName="USER_FIRST_NAME" />
-                <ScalarProperty Name="USER_SECOND_NAME" ColumnName="USER_SECOND_NAME" />
-                <ScalarProperty Name="USER_PATRONYMIC" ColumnName="USER_PATRONYMIC" />
-                <ScalarProperty Name="USER_DATE_OF_BIRTH" ColumnName="USER_DATE_OF_BIRTH" />
-                <ScalarProperty Name="USER_EMPLOYEE" ColumnName="USER_EMPLOYEE" />
                 <ScalarProperty Name="USER_DATE_OF_ADDITION" ColumnName="USER_DATE_OF_ADDITION" />
+                <ScalarProperty Name="USER_DATE_OF_BIRTH" ColumnName="USER_DATE_OF_BIRTH" />
+                <ScalarProperty Name="USER_PATRONYMIC" ColumnName="USER_PATRONYMIC" />
+                <ScalarProperty Name="USER_SECOND_NAME" ColumnName="USER_SECOND_NAME" />
+                <ScalarProperty Name="USER_FIRST_NAME" ColumnName="USER_FIRST_NAME" />
+                <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
                 <ScalarProperty Name="USER_PASSWORD" ColumnName="USER_PASSWORD" />
+                <ScalarProperty Name="USER_EMAIL" ColumnName="USER_EMAIL" />
+                <ScalarProperty Name="USER_POSITION" ColumnName="USER_POSITION" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

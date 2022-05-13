@@ -5,16 +5,14 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="ffbff8b22c7a4ec6bd83f094fbcc3ec7" Name="Diagram1" ZoomLevel="95">
-        <EntityTypeShape EntityType="VOLGA_EAS_DBModel1.EMPLOYEE" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="VOLGA_EAS_DBModel1.POSITION" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="VOLGA_EAS_DBModel1.PROJECT_STAFF" Width="1.5" PointX="7.5" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="VOLGA_EAS_DBModel1.PROJECT" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="VOLGA_EAS_DBModel1.sysdiagram" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="VOLGA_EAS_DBModel1.USER" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="VOLGA_EAS_DBModel1.FK_EMPLOYEES_POSITIONS" ManuallyRouted="false" />
-        <AssociationConnector Association="VOLGA_EAS_DBModel1.FK_USERS_EMPLOYEES" ManuallyRouted="false" />
-        <AssociationConnector Association="VOLGA_EAS_DBModel1.FK_STAFF_ON_THE_PROJECTS_PROJECTS" ManuallyRouted="false" />
-        <AssociationConnector Association="VOLGA_EAS_DBModel1.FK_STAFF_ON_THE_PROJECTS_USERS" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="VOLGA_EAS_DBModel1.POSITION" Width="1.5" PointX="0.75" PointY="1.875" />
+        <EntityTypeShape EntityType="VOLGA_EAS_DBModel1.PROJECT_STAFF" Width="1.5" PointX="5.25" PointY="1.625" />
+        <EntityTypeShape EntityType="VOLGA_EAS_DBModel1.PROJECT" Width="1.5" PointX="3" PointY="5.625" />
+        <EntityTypeShape EntityType="VOLGA_EAS_DBModel1.sysdiagram" Width="1.5" PointX="5.75" PointY="4.75" />
+        <EntityTypeShape EntityType="VOLGA_EAS_DBModel1.USER" Width="1.5" PointX="3" PointY="1" />
+        <AssociationConnector Association="VOLGA_EAS_DBModel1.FK_USERS_POSITIONS" />
+        <AssociationConnector Association="VOLGA_EAS_DBModel1.FK_STAFF_ON_THE_PROJECTS_PROJECTS" />
+        <AssociationConnector Association="VOLGA_EAS_DBModel1.FK_STAFF_ON_THE_PROJECTS_USERS" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

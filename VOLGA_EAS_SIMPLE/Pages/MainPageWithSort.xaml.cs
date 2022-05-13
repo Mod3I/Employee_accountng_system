@@ -29,6 +29,21 @@ namespace VOLGA_EAS_SIMPLE.Pages
         {
             InitializeComponent();
 
+            if (App.CurrentUser.POSITION.POSITION_ID == 2 || App.CurrentUser.POSITION.POSITION_ID == 3)
+            {
+                ExportToWord.Visibility = Visibility.Visible;
+                ExportToExcel.Visibility = Visibility.Visible;
+                AddProject.Visibility = Visibility.Visible;
+                DeleteProject.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                ExportToWord.Visibility = Visibility.Collapsed;
+                ExportToExcel.Visibility = Visibility.Collapsed;
+                AddProject.Visibility = Visibility.Collapsed;
+                DeleteProject.Visibility = Visibility.Collapsed;
+            }
+
             var currentProject = VOLGA_EAS_DBEntities1.GetContext().PROJECTS.ToList();
             LVProjects.ItemsSource = currentProject;
             CheckNoNull.IsChecked = true;
@@ -233,6 +248,11 @@ namespace VOLGA_EAS_SIMPLE.Pages
                 startRowIndex = 1;
             }
             application.Visible = true;
+        }
+
+        private void LVProjects_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
 
         //private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)

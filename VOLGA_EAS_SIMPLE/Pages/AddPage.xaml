@@ -9,7 +9,9 @@
       Title="AddPage">
 
     <Grid>
-        <Image Source="/Resources/photage 2.png" Stretch="UniformToFill"/>
+        <Image Name="Image1"
+               Source="/Resources/photage 2.png"
+               Stretch="UniformToFill"/>
 
         <Grid>
             <Grid.RowDefinitions>
@@ -19,34 +21,36 @@
             </Grid.RowDefinitions>
             <StackPanel>
                 <Grid Margin="5,10,5,0">
-                    <Label Content="Название"
+                    <Label Name="Label1"
+                           Content="Название"
                            HorizontalAlignment="Left"
-                           VerticalAlignment="Center"
-                           />
-                    <TextBox Text="{Binding PROJECT_NAME}"
+                           VerticalAlignment="Center"/>
+                    <TextBox Name="ProjectName"
+                             Text="{Binding PROJECT_NAME}"
                              HorizontalAlignment="Right"
                              Height="36"
                              Width="700"
                              FontSize="24"
-                             />
+                             FontFamily="Arial"/>
                 </Grid>
                 <Grid Margin="5,10,5,0">
-                    <Label Content="Описание"
+                    <Label Name="Label2"
+                           Content="Описание"
                            HorizontalAlignment="Left"
-                           VerticalAlignment="Center"
-                           />
-                    <TextBox Text="{Binding PROJECT_DISCRIPTION}"
+                           VerticalAlignment="Center"/>
+                    <TextBox Name="ProjectDiscription"
+                             Text="{Binding PROJECT_DISCRIPTION}"
                              HorizontalAlignment="Right"
                              Height="36"
                              Width="700"
                              FontSize="24"
-                             />
+                             FontFamily="Arial"/>
                 </Grid>
                 <Grid Margin="5,10,5,0">
-                    <Label Content="Сотрудник"
+                    <Label Name="Label3"
+                           Content="Сотрудник"
                            HorizontalAlignment="Left"
-                           VerticalAlignment="Center"
-                           />
+                           VerticalAlignment="Center"/>
                     <StackPanel Orientation="Horizontal"
                                 HorizontalAlignment="Right">
                         <ComboBox Name="Employees"
@@ -55,22 +59,24 @@
                                   Height="36"
                                   Width="600"
                                   FontSize="24"
-                             />
-                        <Button HorizontalAlignment="Right"
-                            VerticalAlignment="Center"
-                            Click="AddStaff_Click"
-                            Height="36"
-                            Width="100"
-                            Background="#FF006837"
-                            BorderBrush="{x:Null}"
-                            Foreground="{x:Null}">
-                            <Label Style="{StaticResource SmallWhiteLabel}"
-                               Content="ДОБАВИТЬ"/>
+                                  FontFamily="Arial"/>
+                        <Button Name="AddStaff"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                Click="AddStaff_Click"
+                                Height="36"
+                                Width="100"
+                                Background="#FF006837"
+                                BorderBrush="{x:Null}">
+                            <Label Name="Label4"
+                                   Style="{StaticResource SmallWhiteLabel}"
+                                   Content="ДОБАВИТЬ"/>
                         </Button>
                     </StackPanel>
                 </Grid>
             </StackPanel>
-            <ListView Name="LVEmployees" BorderBrush="{x:Null}"
+            <ListView Name="LVEmployees"
+                      BorderBrush="{x:Null}"
                       Opacity="0.5"
                       Margin="20,10"
                       Grid.Row="1">
@@ -82,53 +88,56 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <Label Content="{Binding USER_NAME}"
+                            <Label Name="Label7"
+                                   Content="{Binding USER_NAME}"
                                    Style="{StaticResource NormalGrayLabelBlack}"/>
-                            <Button HorizontalAlignment="Right"
-                            VerticalAlignment="Center"
-                            Click="DeleteStaff_Click"
-                            Height="36"
-                            Width="100"
-                            Background="#FF006837"
-                            BorderBrush="{x:Null}"
-                            Foreground="{x:Null}">
-                                <Label Style="{StaticResource SmallWhiteLabel}"
-                               Content="УДАЛИТЬ"/>
+                            <Button Name="RemoveButton"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Center"
+                                    Click="RemoveStaff_Click"
+                                    Visibility="{Binding ControlsVisibility}"
+                                    Height="36"
+                                    Width="100"
+                                    Background="#FF006837"
+                                    BorderBrush="{x:Null}">
+                                <Label Name="Label8"
+                                       Style="{StaticResource SmallWhiteLabel}"
+                                       Content="УДАЛИТЬ"/>
                             </Button>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <StackPanel Orientation="Horizontal"
+            <Grid HorizontalAlignment="Right"
+                  Grid.Row="2" Width="220">
+                <Button Name="SaveProject"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Click="Save_Click"
+                        Margin="5"
+                        Height="36"
+                        Width="100"
+                        Background="#FF006837"
+                        BorderBrush="{x:Null}">
+                    <Label Name="Label5" HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Style="{StaticResource SmallWhiteLabel}"
+                           Content="СОХРАНИТЬ"/>
+                </Button>
+                <Button Name="BackButton"
                         HorizontalAlignment="Right"
-                        Grid.Row="2" Width="220">
-                <Button HorizontalAlignment="Right"
-                    VerticalAlignment="Center"
-                    Click="Save_Click"
-                    Margin="5"
-                Height="36"
-                Width="100"
-                Background="#FF006837"
-                BorderBrush="{x:Null}"
-                Foreground="{x:Null}">
-                    <Label HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               Style="{StaticResource SmallWhiteLabel}"
-                               Content="СОХРАНИТЬ"/>
+                        VerticalAlignment="Center"
+                        Click="Cancel_Click"
+                        Margin="5"
+                        Height="36"
+                        Width="100"
+                        Background="#FF006837"
+                        BorderBrush="{x:Null}">
+                    <Label Name="Label6"
+                           Style="{StaticResource SmallWhiteLabel}"
+                           Content="НАЗАД"/>
                 </Button>
-                <Button HorizontalAlignment="Right"
-                    VerticalAlignment="Center"
-                    Click="Cancel_Click"
-                    Margin="5"
-                Height="36"
-                Width="100"
-                Background="#FF006837"
-                BorderBrush="{x:Null}"
-                Foreground="{x:Null}">
-                    <Label Style="{StaticResource SmallWhiteLabel}"
-                       Content="ОТМЕНА"/>
-                </Button>
-            </StackPanel>
+            </Grid>
         </Grid>
     </Grid>
 </Page>

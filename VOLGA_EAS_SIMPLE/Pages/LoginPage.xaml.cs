@@ -39,7 +39,10 @@ namespace VOLGA_EAS_SIMPLE.Pages
             if (_confirmedUser != null)
             {
                 if (_confirmedUser.USER_PASSWORD == password)
+                {
+                    App.CurrentUser = _confirmedUser;
                     Manager.MainFrame.Navigate(new MainPageWithSort());
+                }
                 else
                 {
                     MessageBox.Show("Не правильный пароль");
@@ -53,34 +56,6 @@ namespace VOLGA_EAS_SIMPLE.Pages
                 Loging.Clear();
                 Passwordg.Clear();
             }
-            //SqlConnection connection1 = new SqlConnection("Data Source=DESKTOP-5CU2HHD;Initial Catalog=VOLGA_EAS_DB;Integrated Security=True");
-            //SqlCommand comand1 = new SqlCommand();
-            //SqlDataAdapter adaptor1 = new SqlDataAdapter();
-            //DataSet dataset1 = new DataSet();
-            //DataTable dt = new DataTable();
-
-            //comand1.CommandText = @"SELECT ""USER_NAME"", ""USER_PASSWORD"" FROM ""USERS"" WHERE ""USER_NAME""='" + Loging.Text +
-            //@"'AND ""USER_PASSWORD""='" + Passwordg.Text + "'";
-
-
-            //comand1.Connection = connection1;
-
-            //adaptor1.SelectCommand = comand1;
-            //adaptor1.Fill(dataset1, "0");
-            //adaptor1.Fill(dt);
-            //int count1 = dataset1.Tables[0].Rows.Count;
-            //if (count1 > 0)
-            //{
-            //    connection1.Close();
-            //    Manager.MainFrame.Navigate(new MainPageWithSort());
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Не правильный логин или пароль");
-            //    Loging.Clear();
-            //    Passwordg.Clear();
-            //}
-
         }
 
         private void Registration_Click(object sender, RoutedEventArgs e)

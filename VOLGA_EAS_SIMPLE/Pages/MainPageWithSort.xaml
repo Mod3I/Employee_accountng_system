@@ -21,7 +21,7 @@
                       HorizontalAlignment="Left"
                       Margin="10"
                       Width="500"
-                      Opacity="0.5">
+                      Opacity="0.5" SelectionChanged="LVProjects_SelectionChanged">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Orientation="Vertical" ScrollViewer.HorizontalScrollBarVisibility="Hidden"/>
@@ -36,7 +36,7 @@
                                 <RowDefinition/>
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
-                            <Image Stretch="UniformToFill"
+                            <Image Name="Preview" Stretch="UniformToFill"
                                    HorizontalAlignment="Center"
                                    Margin="5"
                                    Width="250"
@@ -50,32 +50,35 @@
                                     </Binding>
                                 </Image.Source>
                             </Image>
-                            <Label Content="{Binding PROJECT_NAME}"
+                            <Label Name="NameProject"
+                                   Content="{Binding PROJECT_NAME}"
                                    VerticalAlignment="Center"
                                    HorizontalAlignment="Center"
                                    Style="{StaticResource SmallGrayLabelBlack}"
                                    Margin="5"
                                    Grid.Row="0"/>
-                            <Label Content="{Binding PROJECT_DISCRIPTION}"
+                            <Label Name="ProjectDiscription"
+                                   Content="{Binding PROJECT_DISCRIPTION}"
                                    VerticalAlignment="Center"
                                    HorizontalAlignment="Center"
                                    Style="{StaticResource SmallGrayLabelBlack}"
                                    Grid.Row="2"
                                    Margin="5"/>
-                            <Button x:Name="DeleteProject"
+                            <Button x:Name="EditProject"
                                             HorizontalAlignment="Center"
                                             Click="Edit_Click"
-                                    Grid.Row="3"
+                                            Grid.Row="3"
                                             Margin="5,0"
                                             Height="36"
                                             Width="125"
                                             Background="#FF006837"
                                             BorderBrush="{x:Null}"
                                             Foreground="{x:Null}">
-                                <Label HorizontalAlignment="Center"
-                                               VerticalAlignment="Center"
-                                               Style="{StaticResource SmallWhiteLabel}"
-                                               Content="РЕДАКТИРОВАТЬ"/>
+                                <Label Name="Label1"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Style="{StaticResource SmallWhiteLabel}"
+                                       Content="ПОДРОБНОСТИ"/>
                             </Button>
                         </Grid>
                     </DataTemplate>
@@ -83,14 +86,17 @@
             </ListView>
             <StackPanel Orientation="Vertical"
                         Margin="0,7">
-                <Label Content="Введите название"
-                           Style="{StaticResource NormalGrayLabelBlack}"/>
+                <Label Name="Label2"
+                       Content="Введите название"
+                       Style="{StaticResource NormalGrayLabelBlack}"/>
                 <TextBox Name="TBoxSearch"
                          TextChanged="TBoxSearch_TextChanged"
                          HorizontalAlignment="Left"
                          Height="18"
-                         Width="250"/>
+                         Width="250"
+                         FontFamily="Arial"/>
                 <CheckBox Name="CheckNoNull"
+                          Visibility="Hidden"
                           Checked="CheckNoNull_Checked"
                           Unchecked="CheckNoNull_Checked"
                           Content="Показывать проекты только с описанием"/>
@@ -100,13 +106,12 @@
                         Margin="0,5"
                         Height="36"
                         Width="250"
-                        Background="#FF006837"
-                        BorderBrush="{x:Null}"
-                        Foreground="{x:Null}">
-                    <Label HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               Style="{StaticResource SmallWhiteLabel}"
-                               Content="ЭКСПОРТИРОВАТЬ В WORD"/>
+                        Background="#FF006837">
+                    <Label Name="Label3"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Style="{StaticResource SmallWhiteLabel}"
+                           Content="ЭКСПОРТИРОВАТЬ В WORD"/>
                 </Button>
                 <Button x:Name="ExportToExcel"
                         HorizontalAlignment="Left"
@@ -114,13 +119,11 @@
                         Margin="0,5"
                         Height="36"
                         Width="250"
-                        Background="#FF006837"
-                        BorderBrush="{x:Null}"
-                        Foreground="{x:Null}">
-                    <Label HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               Style="{StaticResource SmallWhiteLabel}"
-                               Content="ЭКСПОРТИРОВАТЬ В EXCEL"/>
+                        Background="#FF006837">
+                    <Label Name="Label4" HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Style="{StaticResource SmallWhiteLabel}"
+                           Content="ЭКСПОРТИРОВАТЬ В EXCEL"/>
                 </Button>
                 <Button x:Name="AddProject"
                         HorizontalAlignment="Left"
@@ -128,13 +131,11 @@
                         Margin="0,5"
                         Height="36"
                         Width="250"
-                        Background="#FF006837"
-                        BorderBrush="{x:Null}"
-                        Foreground="{x:Null}">
-                    <Label HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               Style="{StaticResource SmallWhiteLabel}"
-                               Content="ДОБАВИТЬ"/>
+                        Background="#FF006837">
+                    <Label Name="Label5" HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Style="{StaticResource SmallWhiteLabel}"
+                           Content="ДОБАВИТЬ"/>
                 </Button>
                 <Button x:Name="DeleteProject"
                         HorizontalAlignment="Left"
@@ -142,13 +143,11 @@
                         Margin="0,5"
                         Height="36"
                         Width="250"
-                        Background="#FF006837"
-                        BorderBrush="{x:Null}"
-                        Foreground="{x:Null}">
-                    <Label HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               Style="{StaticResource SmallWhiteLabel}"
-                               Content="УДАЛИТЬ"/>
+                        Background="#FF006837">
+                    <Label Name="Label6" HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Style="{StaticResource SmallWhiteLabel}"
+                           Content="УДАЛИТЬ"/>
                 </Button>
             </StackPanel>
         </StackPanel>

@@ -83,9 +83,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EAS_DB_Model.edmx</DependentUpon>
     </Compile>
-    <Compile Include="EMPLOYEE.cs">
-      <DependentUpon>EAS_DB_Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="Pages\AddPage.xaml.cs">
       <DependentUpon>AddPage.xaml</DependentUpon>
     </Compile>

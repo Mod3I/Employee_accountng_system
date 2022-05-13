@@ -9,69 +9,68 @@
       Title="LoginPage">
 
     <Grid>
-        <StackPanel VerticalAlignment="Top"
-                    Orientation="Horizontal"
-                    Height="28">
-
-        </StackPanel>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="400*"/>
                 <ColumnDefinition Width="400*"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
-                <Image Source="/Resources/F.jpg"
-                   Height="450"
-                   Stretch="UniformToFill"/>
+                <Image Name="Image1"
+                       Source="/Resources/F.jpg"
+                       Stretch="UniformToFill"/>
 
-                <Label Content="VOLGA"
-                   Padding="10,15"
-                   Style="{StaticResource SmallWhiteLabel}"/>
+                <Label Name="Label1"
+                       Content="VOLGA"
+                       Padding="10,15"
+                       Style="{StaticResource SmallWhiteLabel}"/>
 
                 <StackPanel VerticalAlignment="Center"
-                        HorizontalAlignment="Center">
+                            HorizontalAlignment="Center">
 
-                    <Label VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       Margin="0,20"
-                       Content="Ещё не зарегистрированны?"/>
+                    <Label Name="Label2" VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           Margin="0,20"
+                           Content="Ещё не зарегистрированы?"/>
 
-                    <Button Background="{x:Null}"
-                            BorderBrush="{x:Null}" 
-                            Foreground="{x:Null}"
-                            Click="Registration_Click">
-                        <Label Content="Зарегистрироваться"
-                       BorderThickness="0,0,0,1"
-                       BorderBrush="White"
-                       Padding="0,5,0,0"/>
+                    <Button Name="RegistrationButton"
+                            Click="Registration_Click"
+                            Background="{x:Null}"
+                            BorderBrush="{x:Null}"
+                            Foreground="{x:Null}">
+                        <Label Name="Label6"
+                               Content="Зарегистрироваться"
+                               BorderThickness="0,0,0,1"
+                               BorderBrush="White"
+                               Padding="0,5,0,0"/>
                     </Button>
-                    <Grid>
-
-                    </Grid>
                 </StackPanel>
             </Grid>
             <StackPanel Grid.Column="1"
-                    VerticalAlignment="Stretch">
+                        VerticalAlignment="Stretch">
 
 
                 <StackPanel VerticalAlignment="Center"
-                        HorizontalAlignment="Center"
-                        Margin="0,62,0,0">
-                    <Label HorizontalAlignment="Center"
-                       Style="{StaticResource BigGrayLabelBlack}"
-                       Margin="20"
-                       Content="Авторизация"/>
+                            HorizontalAlignment="Center"
+                            Margin="0,62,0,0">
+                    <Label Name="Label3"
+                           HorizontalAlignment="Center"
+                           Style="{StaticResource BigGrayLabelBlack}"
+                           Margin="20"
+                           Content="Авторизация"/>
 
-                    <Label Content="Логин"
+                    <Label Name="Label4"
+                           Content="Логин"
                            Style="{StaticResource SmallGrayLabelBlack}"/>
 
                     <TextBox Text="{Binding USER_NAME}"
                              x:Name="Loging"
+                             FontFamily="Arial"
                              FontSize="20"
                              Height="36"
                              Width="225"/>
 
-                    <Label Content="Пароль"
+                    <Label Name="Label5"
+                           Content="Пароль"
                            Style="{StaticResource SmallGrayLabelBlack}"/>
 
                     <TextBox FontFamily="pack://application:,,,/Fonts/#Password"
@@ -86,14 +85,14 @@
 
                     <Grid Cursor="Hand"
                           Margin="0,20,0,0">
-                        <Button Background="#FF006837"
-                                Name="Login"
+                        <Button Name="LoginButton"
+                                Background="#FF006837"
                                 Click="Login_Click"
                                 Height="36">
                             <Label HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           Content="ВОЙТИ"
-                           Style="{StaticResource SmallWhiteLabel}"/>
+                                   VerticalAlignment="Center"
+                                   Content="ВОЙТИ"
+                                   Style="{StaticResource SmallWhiteLabel}"/>
                         </Button>
 
                     </Grid>
@@ -101,11 +100,13 @@
 
                         <Label Content="Забыли пароль?" 
                            HorizontalAlignment="Left"
-                           Style="{StaticResource TinyGrayLabelBlackLink}"/>
+                           Style="{StaticResource TinyGrayLabelBlackLink}"
+                               Visibility="Collapsed"/>
 
                         <Label Content="Ещё не с нами?"
                            HorizontalAlignment="Right"
-                           Style="{StaticResource TinyGrayLabelBlackLink}"/>
+                           Style="{StaticResource TinyGrayLabelBlackLink}"
+                               Visibility="Collapsed"/>
                     </Grid>
                 </StackPanel>
             </StackPanel>

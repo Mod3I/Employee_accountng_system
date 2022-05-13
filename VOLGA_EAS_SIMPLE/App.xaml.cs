@@ -15,6 +15,6 @@ namespace VOLGA_EAS_SIMPLE
     public partial class App : Application
     {
         //public static Entities.VOLGA_EAS_DBEntities1
-        //public static USER CurrentUser = null;
+        public static USER CurrentUser = null;
     }
 }

@@ -45,6 +45,7 @@ namespace VOLGA_EAS_SIMPLE.Pages
                     uSER.USER_EMAIL = mail;
                     uSER.USER_NAME = login;
                     uSER.USER_PASSWORD = password;
+                    uSER.USER_POSITION = 1;
                     VOLGA_EAS_DBEntities1.GetContext().USERS.Add(uSER);
 
                     try
